@@ -449,7 +449,6 @@ button[type="submit"]:hover {
 }
 /* CSS for smaller screens (e.g., mobile devices) */
 @media only screen and (max-width: 768px) {
-    /* Adjustments for smaller screens */
     .hero-image {
         height: 30vh; /* Decrease hero image height */
     }
@@ -473,3 +472,4 @@ button[type="submit"]:hover {
         height: auto; /* Allow cards to adjust height based on content */
     }
 }
+

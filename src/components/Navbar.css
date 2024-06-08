@@ -1,5 +1,244 @@
-.logo {
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .nav-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
     color: white;
     font-weight: bold;
     text-decoration: none;
-}
+    font-size: 24px;
+  }
+  
+  .menu-btn {
+    display: none; /* Hide by default */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin: 0 10px;
+  }
+  
+  .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .auth-links a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .profile-icon a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  /* Dropdown styles */
+  
+  @media screen and (max-width: 768px) {
+    .menu-btn {
+      display: block; /* Show when viewport width is <= 768px */
+    }
+  
+    .nav-links {
+      display: none; /* Hide by default */
+      flex-direction: column;
+      position: absolute;
+      top: 100%; /* Position dropdown below navbar */
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px 0;
+      z-index: 1;
+    }
+  
+    .nav-links.show {
+      display: flex; /* Show when menu button is clicked */
+    }
+  
+    .nav-links li {
+      margin: 5px 0;
+      text-align: center; /* Center align links */
+    }
+  
+    .auth-links {
+      margin-top: 10px; /* Add space between links and auth links */
+      text-align: center; /* Center align auth links */
+    }
+  
+    .profile-icon {
+      margin-top: 10px; /* Add space between auth links and profile icon */
+      text-align: center; /* Center align profile icon */
+    }
+  }
+  
+
+
+  /* CSS for smaller screens (375px x 667px) */
+/* Mobile devices */
+
+@media only screen and (max-width: 375px) {
+    .login-container2 {
+      width: 150%;
+      margin: 0 auto;
+      padding: 10px;
+      background-size: cover; 
+    }
+    .login-box {
+      padding: 10px;
+    }
+    .login-input-group {
+      margin-bottom: 10px;
+    }
+    .login-input-group input {
+      padding: 5px;
+    }
+    .login-input-group button {
+      padding: 5px;
+    }
+  }
+  
+  @media only screen and (min-width: 376px) and (max-width: 414px) {
+    .login-container2 {
+      width: 85%;
+      margin: 0 auto;
+      padding: 12px;
+    }
+    .login-box {
+      padding: 12px;
+    }
+    .login-input-group {
+      margin-bottom: 12px;
+    }
+    .login-input-group input {
+      padding: 7px;
+    }
+    .login-input-group button {
+      padding: 7px;
+    }
+  }
+  
+  @media only screen and (min-width: 415px) and (max-width: 430px) {
+    .login-container2 {
+      width: 80%;
+      margin: 0 auto;
+      padding: 15px;
+    }
+    .login-box {
+      padding: 15px;
+    }
+    .login-input-group {
+      margin-bottom: 15px;
+    }
+    .login-input-group input {
+      padding: 10px;
+    }
+    .login-input-group button {
+      padding: 10px;
+    }
+  }
+  
+  @media only screen and (min-width: 431px) and (max-width: 540px) {
+    .login-container2 {
+      width: 75%;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .login-box {
+      padding: 18px;
+    }
+    .login-input-group {
+      margin-bottom: 18px;
+    }
+    .login-input-group input {
+      padding: 12px;
+    }
+    .login-input-group button {
+      padding: 12px;
+    }
+  }
+  
+  /* Tablets */
+  
+  @media only screen and (min-width: 541px) and (max-width: 768px) {
+    .login-container2 {
+      width: 70%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .login-box {
+      padding: 20px;
+    }
+    .login-input-group {
+      margin-bottom: 20px;
+    }
+    .login-input-group input {
+      padding: 15px;
+    }
+    .login-input-group button {
+      padding: 15px;
+    }
+  }
+  
+  /* Laptops and desktops */
+  
+  @media only screen and (min-width: 769px) and (max-width: 912px) {
+    .login-container2 {
+      width: 60%;
+      margin: 0 auto;
+      padding: 25px;
+    }
+    .login-box {
+      padding: 25px;
+    }
+    .login-input-group {
+      margin-bottom: 25px;
+    }
+    .login-input-group input {
+      padding: 18px;
+    }
+    .login-input-group button {
+      padding: 18px;
+    }
+  }
+  
+  @media only screen and (min-width: 913px) and (max-width: 1024px) {
+    .login-container2 {
+      width: 55%;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    .login-box {
+      padding: 30px;
+    }
+    .login-input-group {
+      margin-bottom: 30px;
+    }
+    .login-input-group input {
+      padding: 20px;
+    }
+    .login-input-group button {
+      padding: 20px;
+    }
+  }
