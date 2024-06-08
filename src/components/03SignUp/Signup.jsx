@@ -36,7 +36,7 @@ const Signup = () => {
     const [messageStyle, setMessageStyle] = useState({});
 
     return (
-        <div className="login-body">
+        <div className="signup-body">
 {/*             <nav className="login-nav">
                 <Link to="/" className="login-navbar-brand">
                     AutoVoyage
