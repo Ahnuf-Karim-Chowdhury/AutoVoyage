@@ -1,0 +1,442 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
+ }
+
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff1493;
+}
+
+.search-box {
+  position: relative;
+  margin-right: 7%; /* Adjust margin to ensure 10px gap */
+}
+
+.search-box input {
+  padding: 10px 40px 10px 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-box i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff69b4;
+  cursor: pointer;
+}
+
+.search-box input:focus + i {
+  color: #0000ff;
+}
+
+.suggestions-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #444;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.suggestions-box div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.suggestions-box div:hover {
+  background-color: #8a2be2;
+}
+
+.auth-links {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; /* Pushes auth-links to the right */
+}
+
+.auth-links a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.auth-links a:hover {
+  color: #ff1493;
+}
+
+.profile-icon {
+  margin-left: 20px;
+}
+
+.profile-icon a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.profile-icon a:hover {
+  color: #ccc;
+}
+
+.hero-image {
+  width: 100%;
+  height: 40vh;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  padding: 20px;
+}
+
+.card {
+  background-color: rgba(68, 68, 68, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+  height: 400px;
+}
+
+.card img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+
+.card-details {
+  padding: 10px;
+  height: 40%;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  text-align: center;
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: calc(100% * 6);
+  transition: transform 0.5s ease;
+}
+
+.slides img {
+  width: calc(100% / 6);
+  height: auto;
+}
+
+@keyframes slide {
+  0% {
+      transform: translateX(0%);
+  }
+  25% {
+      transform: translateX(-100%);
+  }
+  50% {
+      transform: translateX(-200%);
+  }
+  75% {
+      transform: translateX(-300%);
+  }
+  100% {
+      transform: translateX(0%);
+  }
+}
+
+:root {
+  --slide-duration: 12s;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.nav-links .dropdown:nth-child(1) {
+  margin-left: 100px;
+}
+
+.car-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  padding: 20px;
+}
+
+.card {
+  background-color: rgba(68, 68, 68, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+  height: 400px;
+}
+
+/* ********************************************************************* */
+
+/* Updated filter card style */
+.filter-card {
+  background-color: rgba(0, 0, 0, 0.6); /* Transparent black background */
+  color: white; /* Text color for visibility */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+/* This box is inside the filter box containing the price ranges */
+.filter-card-Min-Max-Price-Box {
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  color: white; /* Text color for visibility */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 10px;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.filter-group input[type="number"] {
+  width: calc(50% - 5px); /* Half-width minus margin */
+  display: inline-block;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.filter-group input[type="number"]:not(:last-child) {
+  margin-right: 10px; /* Space between the two inputs */
+}
+
+.range-slider {
+  position: relative;
+  width: 100%;
+  height: 30px; /* Adjust height if necessary */
+}
+
+.range-slider input[type="range"] {
+  -webkit-appearance: none;
+  width: calc(100% - 50px); /* Adjust the width if necessary */
+  height: 8px;
+  background: white; /* Change background color to white for better contrast */
+  border-radius: 5px;
+  outline: none;
+  opacity: 1; /* Set opacity to 1 for full visibility */
+  transition: opacity 0.2s;
+  position: absolute;
+  left: 0px; /* Adjust if necessary */
+  pointer-events: none;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ff1493; /* Bright pink color */
+  cursor: pointer;
+  border-radius: 50%;
+  pointer-events: all;
+  position: relative;
+  opacity: 1; /* Fully opaque */
+  z-index: 2; /* Ensure it's on top */
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ff1493; /* Bright pink color */
+  cursor: pointer;
+  border-radius: 50%;
+  pointer-events: all;
+  position: relative;
+  opacity: 1; /* Fully opaque */
+  z-index: 2; /* Ensure it's on top */
+}
+
+/* Remaining styles */
+.filter-card form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.card img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+
+.card-details {
+  padding: 10px;
+  height: 40%;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.filter-group {
+  margin-bottom: 10px;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+}
+
+.filter-group select {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  background-color: rgba(229, 222, 226, 0.8); /* rgba(174, 174, 174, 0.7); */ /* Dropdown background color */
+  color: black; /* Text color within the dropdown */
+  font-size: 16px; /* Font size */
+}
+/* Custom classes for filter dropdown */
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  opacity: 0.9; /* Initial opacity when dropdown is not hovered or clicked */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+}
+*
+.filter-dropdown:hover .filter-dropdown-content {
+  display: block;
+  opacity: 1;
+}
+
+/* Style for the dropdown when it's clicked (focused) */
+.filter-group select:focus {
+  opacity: 0.8; /* Adjust the opacity as needed */
+}
+
+/* Style for the dropdown when it's hovered */
+.filter-group select:hover {
+  opacity: 0.8; /* Adjust the opacity as needed */
+}
+
+
+.filter-group input[type="range"],
+.filter-group input[type="number"] {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.filter-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #ff1493;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff69b4;
+}
