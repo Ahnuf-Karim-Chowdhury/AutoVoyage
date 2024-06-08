@@ -149,3 +149,28 @@
 .signup-divider-text {
     padding: 0 10px; /* Adjust spacing as needed */
 }
+/* CSS for smaller screens (e.g., mobile devices) */
+@media only screen and (max-width: 768px) {
+    .hero-image {
+        height: 30vh; /* Decrease hero image height */
+    }
+
+    .slider {
+        width: 90%; /* Adjust slider width */
+        margin: 0 auto; /* Center slider */
+    }
+
+    .slides img {
+        width: 100%; /* Make slider images fill container */
+    }
+
+    .car-cards {
+        grid-template-columns: repeat(1, 1fr); /* Stack cards in a single column */
+        gap: 20px; /* Decrease gap between cards */
+        padding: 10px; /* Decrease padding */
+    }
+
+    .card {
+        height: auto; /* Allow cards to adjust height based on content */
+    }
+}

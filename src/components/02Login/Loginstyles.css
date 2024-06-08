@@ -11,9 +11,11 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, rgba(2, 0, 36, 0.9) 0%, rgba(9, 9, 121, 0.9) 50%, rgba(0, 212, 255, 0.9) 100%);
     background-size: cover;
     background-position: center;
+    /* 
+    
+    */
 }
 
 .login-nav {
@@ -39,7 +41,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-
+    background-position: center;
 }
 
 .login-container2 {
@@ -50,6 +52,8 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
+    /*background-size: cover;*/
+    background-position: center;
 }
 
 .login-box h1 {
@@ -119,47 +123,68 @@
     text-align: center;
 }
 
-@media (max-width: 500px) {
-    .login-container {
+@media (max-width: 300px) {
+    .login-container2 {
         padding: 15px;
+        max-width: 300px; /* Adjust the max-width for smaller screens */
+    }
+    .login-input-group input, .login-input-group button {
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+    .login-box h1 {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+    .login-links a {
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+    .login-nav {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+    .login-navbar-brand {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 400px) {
+    .login-container2 {
+        padding: 15px;
+        max-width: 90%; /* Adjust the max-width for smaller screens */
     }
 }
 
 .login-forgot-password {
-    text-align: center; /* Align the link to the center */
+    text-align: center;
 }
 
 .login-forgot-password a {
-    color: #007bff; /* Change the color of the link */
-    text-decoration: none; /* Remove underline */
+    color: #007bff;
+    text-decoration: none;
 }
 
 .login-forgot-password a:hover {
-    color: #0056b3; /* Change color on hover */
+    color: #0056b3;
 }
-
 
 .icon-google,
 .icon-facebook {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px; /* Adjust spacing between icon and text */
+    margin-right: 10px;
     /* Add styles for the icons (font-size, color, etc.) */
 }
+
 .login-divider-container {
     display: flex;
     align-items: center;
-    color: #aaa; /* Adjust color as needed */
+    color: #aaa;
 }
 
 .login-divider-line {
     flex-grow: 1;
-    height: 1px; /* Adjust thickness as needed */
-    background-color: #aaa; /* Adjust color as needed */
+    height: 1px;
+    background-color: #aaa;
 }
 
 .login-divider-text {
-    padding: 0 10px; /* Adjust spacing as needed */
+    padding: 0 10px;
 }
-
-

@@ -1,8 +1,7 @@
-// Login.jsx
-
 import React, { useState } from 'react';
 import './Loginstyles.css';
-import { Link } from 'react-router-dom'; // Import Link
+import useWindowSize from "../utils/useWindowSize.js";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,17 +10,18 @@ const Login = () => {
     const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
     const [resetEmail, setResetEmail] = useState('');
     const [resetMessage, setResetMessage] = useState('');
+    const [messageStyle, setMessageStyle] = useState({});
+    const [resetMessageStyle, setResetMessageStyle] = useState({});
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();
 
-        // Simple client-side validation
         if (email === 'user@example.com' && password === 'password123') {
             setMessage('Login successful!');
-            setMessageColor('green');
+            setMessageStyle({ color: 'green' });
         } else {
             setMessage('Invalid email or password.');
-            setMessageColor('red');
+            setMessageStyle({ color: 'red' });
         }
     };
 
@@ -34,63 +34,72 @@ const Login = () => {
 
         if (resetEmail === 'user@example.com') {
             setResetMessage('Password reset link sent!');
-            setResetMessageColor('green');
+            setResetMessageStyle({ color: 'green' });
         } else {
             setResetMessage('Email not found.');
-            setResetMessageColor('red');
+            setResetMessageStyle({ color: 'red' });
         }
     };
 
-    const setMessageColor = (color) => {
-        setMessageStyle({ color });
-    };
-
-    const setResetMessageColor = (color) => {
-        setResetMessageStyle({ color });
-    };
-
-    const [messageStyle, setMessageStyle] = useState({});
-    const [resetMessageStyle, setResetMessageStyle] = useState({});
+    const { width } = useWindowSize();
 
     return (
         <div className="login-body">
-{/*             <nav className="login-nav">
-                <Link to="/" className="login-navbar-brand">
-                    AutoVoyage
-                </Link>
-            </nav> */}
             <div className="login-container1">
                 {forgotPasswordVisible ? (
                     <div className="login-container2" id="forgot-password-container">
                         <div className="login-box">
                             <h1>Forgot Password</h1>
-                            <form id="login-forgotPasswordForm">
+                            <form id="login-forgotPasswordForm" onSubmit={handleForgotPasswordSubmit}>
                                 <div className="login-input-group">
                                     <label htmlFor="reset-email">Email</label>
-                                    <input type="email" id="reset-email" name="reset-email" required />
+                                    <input
+                                        type="email"
+                                        id="reset-email"
+                                        name="reset-email"
+                                        value={resetEmail}
+                                        onChange={(e) => setResetEmail(e.target.value)}
+                                        required
+                                    />
                                 </div>
                                 <div className="login-input-group">
                                     <button type="submit">Reset Password</button>
                                 </div>
-                                <div id="reset-message" className="message"></div>
+                                <div id="reset-message" className="message" style={resetMessageStyle}>
+                                    {resetMessage}
+                                </div>
                             </form>
                             <div className="login-forgot-password">
-                                <a href="#" id="back-to-login-link">Back to Login</a>
+                                <a href="#" onClick={toggleForgotPassword} id="back-to-login-link">Back to Login</a>
                             </div>
                         </div>
                     </div>
                 ) : (
-                    <div className="login-container2" id="login-container">
+                    <div className={`login-container2 ${width < 500 ? 'mobile' : ''}`} id="login-container">
                         <div className="login-box">
                             <h1>Login</h1>
-                            <form id="loginForm">
+                            <form id="loginForm" onSubmit={handleLoginSubmit}>
                                 <div className="login-input-group">
                                     <label htmlFor="email">Email</label>
-                                    <input type="email" id="email" name="email" required />
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
                                 </div>
                                 <div className="login-input-group">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" id="password" name="password" required />
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
                                 </div>
                                 <div className="login-input-group">
                                     <button type="submit">Login</button>
@@ -111,16 +120,17 @@ const Login = () => {
                                         <span className="icon-facebook"></span> Continue with Facebook
                                     </button>
                                 </div>
-                                <div id="login-message" className="login-message"></div>
+                                <div id="login-message" className="login-message" style={messageStyle}>
+                                    {message}
+                                </div>
                             </form>
                             <div className="login-links">
                                 <Link to="/signup">
                                     Don't have an account?
                                 </Link>
-                                <Link to="/forgotpassword" id="login-forgot-password-link" className="right-link">
+                                <Link to="/forgotpassword" onClick={toggleForgotPassword} id="login-forgot-password-link" className="right-link">
                                     Forgot Password?
                                 </Link>
-
                             </div>
                         </div>
                     </div>
