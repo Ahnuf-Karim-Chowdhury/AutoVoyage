@@ -1,13 +1,35 @@
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import "./Navbar.css";
+import useWindowSize from "./utils/useWindowSize"; // Import the useWindowSize hook
 
-import { Link } from 'react-router-dom'; // Import Link
-import "./Navbar.css"
-const navbar = () => {
+const Navbar = () => {
+  const windowSize = useWindowSize(); // Use the useWindowSize hook
+
+  // Check if window width is less than or equal to 768px
+  const isMobile = windowSize.width <= 768;
+
+  // State to manage mobile menu visibility
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Function to toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
     <nav className='nav'>
       <Link to="/" className="logo">
         AutoVoyage
       </Link>
-      <ul className="nav-links">
+
+      {/* Render menu button for mobile */}
+      {isMobile && (
+        <button className="menu-btn" onClick={toggleMobileMenu}>&#9776;</button>
+      )}
+
+      {/* Render nav links based on window size */}
+      <ul className={`nav-links ${isMobile ? 'mobile' : ''} ${mobileMenuOpen ? 'show' : ''}`}>
         <li className="dropdown">
           <a href="#" className="dropbtn">New</a>
           <div className="dropdown-content">
@@ -54,8 +76,9 @@ const navbar = () => {
         </li>
         <li><a href="#">Sell Your Car</a></li>
       </ul>
+
       <div className="search-box">
-        <input type="text" id="search-input" placeholder="Search cars" />
+              <input type="text" id="search-input" placeholder="Search cars" />
         <i className="fas fa-search"></i>
         <div className="suggestions-box" id="suggestions-box"></div>
       </div>
@@ -64,12 +87,13 @@ const navbar = () => {
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
       </div>
+
       <div className="profile-icon">
-        <a href="10profile.html"><i className="fas fa-user-circle"></i></a>
+       <a href="10profile.html"><i className="fas fa-user-circle"></i></a>
       </div>
     </nav>
-
   );
 };
 
-export default navbar;
+export default Navbar;
+
