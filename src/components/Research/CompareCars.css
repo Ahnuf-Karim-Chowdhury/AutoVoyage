@@ -1,0 +1,78 @@
+.compare-container {
+    padding: 40px 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background for a sporty look */
+    min-height: 100vh;
+    color: #ffffff; /* White text for contrast */
+    text-align: center;
+  }
+  
+  .compare-container h1 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #e91e5e; /* Sporty, vibrant color */
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .car-selectors {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 20px;
+  }
+  
+  .car-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .car-selector label {
+    margin-bottom: 8px;
+    font-size: 1.2em;
+    color: #ffffff;
+  }
+  
+  .car-selector select {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 2px solid #e91e63; /* Sporty border color */
+    background-color: #1e1e1e; /* Dark background */
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .compare-table {
+    overflow-x: auto;
+  }
+  
+  .compare-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .compare-table th, .compare-table td {
+    padding: 16px;
+    border: 1px solid #541ee9; /* Sporty border color */
+    text-align: center;
+  }
+  
+  .compare-table th {
+    background-color: #1e1e1e; /* Dark background */
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .compare-table td {
+    background-color: #2a2a2a; /* Slightly lighter background */
+    color: #ffffff;
+  }
+  
+  .car-image {
+    width: 170px;
+    height:0 auto;
+    border-radius: 7px;
+  }
+  
