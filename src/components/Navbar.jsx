@@ -14,9 +14,6 @@ const Navbar = () => {
           <div className="dropdown-content">
             <Link to="/deals">Deals</Link>
             <Link to="/new-car-listings">New Car Listings</Link>
-            <Link to="/new-suvs">New SUVs</Link>
-            <Link to="/new-trucks">New Trucks</Link>
-            <Link to="/new-vans">New Vans</Link>
             <Link to="/new-convertibles">New Convertibles</Link>
           </div>
         </li>

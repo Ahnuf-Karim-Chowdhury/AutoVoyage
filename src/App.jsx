@@ -7,7 +7,9 @@ import ForgotPassword from './components/04FogotPassword/ForgotPassword';
 import Deals from './components/New/Deals';
 import CompareCars from './components/Research/CompareCars';
 import CarReviews from './components/Research/CarReviews';
-
+import NewCarListings from './components/New/NewCarListings'; 
+import NewConvertibles from './components/New/NewConvertibles';
+import CarFinderQuiz from './components/Research/CarFinderQuiz';
 function App() {
     return (
         <Router>
@@ -21,6 +23,9 @@ function App() {
                     <Route path="/deals" element={<Deals />} />
                     <Route path="/compare-cars" element={<CompareCars />} />
                     <Route path="/car-reviews" element={<CarReviews />} />
+                    <Route path="/new-car-listings" element={<NewCarListings />} />
+                    <Route path="/new-convertibles"element={<NewConvertibles />} />
+                    <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
                 </Routes>
             </div>
         </Router>

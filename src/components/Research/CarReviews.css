@@ -65,15 +65,15 @@
   .submit-button {
     padding: 10px 20px;
     font-size: 1.1em;
-    background-color: #3498db; /* Blue button */
+    background-color: #3498db; 
     color: #fff;
-    border: 1px solid #000; /* Black border */
+    border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
   }
   
   .submit-button:hover {
-    background-color: #2980b9; /* Darker blue on hover */
+    background-color: #2980b9;
   }
   
   .reviews-list ul {
