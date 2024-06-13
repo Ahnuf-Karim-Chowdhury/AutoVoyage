@@ -1,51 +1,49 @@
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
     font-family: 'Arial', sans-serif;
+    box-sizing: border-box; /* Ensure box-sizing is set universally */
 }
 
 .signupBody {
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(to bottom, #003366, #663399, #ff6699);
-    /* linear-gradient(135deg, rgba(2, 0, 36, 0.9) 0%, rgba(9, 9, 121, 0.9) 50%, rgba(0, 212, 255, 0.9) 100%); */
     background-size: cover;
     background-position: center;
 }
 
 .signup-container1 {
     width: 100%;
-    max-width: 400px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center horizontally */
+    max-width: 400px;
+    margin: 0 auto;
     padding: 2%;
-    background: rgba(0, 0, 0, 0.8);/*  rgba(0, 0, 0, 0.8); */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-    
-  }
-  
+}
 
-.signup-signup-container2 {
+.signup-container2 {
     width: 100%;
-    max-width: 400px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center horizontally */
+    max-width: 800px; /* Adjust max-width to make the form wider */
+    margin: 0 auto;
     padding: 10%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-    margin-top: 100px;
-    margin-bottom: 45px;
-  }
-  
+}
+
+.signup-box {
+    margin-bottom: 45px; /* Adjust margin as needed */
+}
+
+.signup-form-container {
+    margin-bottom: 45px; /* Same margin as .signup-box to ensure consistency */
+}
 
 .signup-box h1 {
     margin-bottom: 20px;
     text-align: center;
-    color: #fff; /* White text color */
+    color: #fff;
 }
 
 .signup-input-group {
@@ -55,20 +53,20 @@
 .signup-input-group label {
     display: block;
     margin-bottom: 5px;
-    color: #aaa; /* Light gray text color */
+    color: #aaa;
 }
 
 .signup-input-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #555; /* Dark border */
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1); /* Slightly transparent input background */
-    color: #fff; /* White text color */
+    border: 1px solid #555;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 .signup-input-group input::placeholder {
-    color: #ddd; /* Light gray placeholder color */
+    color: #ddd;
 }
 
 .signup-input-group button {
@@ -76,7 +74,7 @@
     padding: 10px;
     background-color: #007bff;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -108,48 +106,25 @@
     text-align: center;
 }
 
-@media (max-width: 500px) {
-    .signup-container {
-        padding: 15px;
-    }
-}
 .signup-divider-container {
     display: flex;
     align-items: center;
-    color: #aaa; /* Adjust color as needed */
+    color: #aaa;
 }
 
 .signup-divider-line {
     flex-grow: 1;
-    height: 1px; /* Adjust thickness as needed */
-    background-color: #aaa; /* Adjust color as needed */
+    height: 1px;
+    background-color: #aaa;
 }
 
 .signup-divider-text {
-    padding: 0 10px; /* Adjust spacing as needed */
+    padding: 0 10px;
 }
-/* CSS for smaller screens (e.g., mobile devices) */
-@media only screen and (max-width: 768px) {
-    .hero-image {
-        height: 30vh; /* Decrease hero image height */
-    }
 
-    .slider {
-        width: 90%; /* Adjust slider width */
-        margin: 0 auto; /* Center slider */
-    }
-
-    .slides img {
-        width: 100%; /* Make slider images fill container */
-    }
-
-    .car-cards {
-        grid-template-columns: repeat(1, 1fr); /* Stack cards in a single column */
-        gap: 20px; /* Decrease gap between cards */
-        padding: 10px; /* Decrease padding */
-    }
-
-    .card {
-        height: auto; /* Allow cards to adjust height based on content */
+@media (max-width: 500px) {
+    .signup-container1,
+    .signup-container2 {
+        padding: 15px;
     }
 }
