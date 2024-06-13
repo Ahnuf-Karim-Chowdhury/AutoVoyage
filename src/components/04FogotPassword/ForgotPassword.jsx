@@ -3,7 +3,7 @@
 import './ForgotPasswordStyles.css'
 const ForgotPassword = () => {
     return (
-        <div className="centered-container" id="forgot-forgot-password-container">
+        <div className="forgot-body" >
             <div className="forgot-container2">
                 <h1>Forgot Password</h1>
                 <form id="forgotPasswordForm">

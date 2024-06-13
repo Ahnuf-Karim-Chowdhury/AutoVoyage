@@ -3,6 +3,7 @@ import "./Navbar.css"
 
 const Navbar = () => {
   return (
+    <>
     <nav className='nav'>
       <Link to="/" className="logo">
         AutoVoyage
@@ -64,6 +65,7 @@ const Navbar = () => {
         <Link to="/profile"><i className="fas fa-user-circle"></i></Link>
       </div>
     </nav>
+    </>
   );
 };
 

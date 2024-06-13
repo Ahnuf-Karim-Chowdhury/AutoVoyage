@@ -2,43 +2,59 @@ import React, { useState } from 'react';
 import './Loginstyles.css';
 import useWindowSize from "../utils/useWindowSize.js";
 import { Link } from 'react-router-dom';
+import { produce } from 'immer';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
-    const [resetEmail, setResetEmail] = useState('');
-    const [resetMessage, setResetMessage] = useState('');
-    const [messageStyle, setMessageStyle] = useState({});
-    const [resetMessageStyle, setResetMessageStyle] = useState({});
+    const [state, setState] = useState({
+        email: '',
+        password: '',
+        message: '',
+        forgotPasswordVisible: false,
+        resetEmail: '',
+        resetMessage: '',
+        messageStyle: {},
+        resetMessageStyle: {}
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setState(produce(draft => {
+            draft[name] = value;
+        }));
+    };
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();
 
-        if (email === 'user@example.com' && password === 'password123') {
-            setMessage('Login successful!');
-            setMessageStyle({ color: 'green' });
-        } else {
-            setMessage('Invalid email or password.');
-            setMessageStyle({ color: 'red' });
-        }
+        setState(produce(draft => {
+            if (state.email === 'user@example.com' && state.password === 'password123') {
+                draft.message = 'Login successful!';
+                draft.messageStyle = { color: 'green' };
+            } else {
+                draft.message = 'Invalid email or password.';
+                draft.messageStyle = { color: 'red' };
+            }
+        }));
     };
 
     const toggleForgotPassword = () => {
-        setForgotPasswordVisible(!forgotPasswordVisible);
+        setState(produce(draft => {
+            draft.forgotPasswordVisible = !draft.forgotPasswordVisible;
+        }));
     };
 
     const handleForgotPasswordSubmit = (event) => {
         event.preventDefault();
 
-        if (resetEmail === 'user@example.com') {
-            setResetMessage('Password reset link sent!');
-            setResetMessageStyle({ color: 'green' });
-        } else {
-            setResetMessage('Email not found.');
-            setResetMessageStyle({ color: 'red' });
-        }
+        setState(produce(draft => {
+            if (state.resetEmail === 'user@example.com') {
+                draft.resetMessage = 'Password reset link sent!';
+                draft.resetMessageStyle = { color: 'green' };
+            } else {
+                draft.resetMessage = 'Email not found.';
+                draft.resetMessageStyle = { color: 'red' };
+            }
+        }));
     };
 
     const { width } = useWindowSize();
@@ -46,7 +62,7 @@ const Login = () => {
     return (
         <div className="login-body">
             <div className="login-container1">
-                {forgotPasswordVisible ? (
+                {state.forgotPasswordVisible ? (
                     <div className="login-container2" id="forgot-password-container">
                         <div className="login-box">
                             <h1>Forgot Password</h1>
@@ -56,17 +72,17 @@ const Login = () => {
                                     <input
                                         type="email"
                                         id="reset-email"
-                                        name="reset-email"
-                                        value={resetEmail}
-                                        onChange={(e) => setResetEmail(e.target.value)}
+                                        name="resetEmail"
+                                        value={state.resetEmail}
+                                        onChange={handleChange}
                                         required
                                     />
                                 </div>
                                 <div className="login-input-group">
                                     <button type="submit">Reset Password</button>
                                 </div>
-                                <div id="reset-message" className="message" style={resetMessageStyle}>
-                                    {resetMessage}
+                                <div id="reset-message" className="login-message" style={state.resetMessageStyle}>
+                                    {state.resetMessage}
                                 </div>
                             </form>
                             <div className="login-forgot-password">
@@ -85,8 +101,8 @@ const Login = () => {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        value={state.email}
+                                        onChange={handleChange}
                                         required
                                     />
                                 </div>
@@ -96,8 +112,8 @@ const Login = () => {
                                         type="password"
                                         id="password"
                                         name="password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        value={state.password}
+                                        onChange={handleChange}
                                         required
                                     />
                                 </div>
@@ -120,8 +136,8 @@ const Login = () => {
                                         <span className="icon-facebook"></span> Continue with Facebook
                                     </button>
                                 </div>
-                                <div id="login-message" className="login-message" style={messageStyle}>
-                                    {message}
+                                <div id="login-message" className="login-message" style={state.messageStyle}>
+                                    {state.message}
                                 </div>
                             </form>
                             <div className="login-links">

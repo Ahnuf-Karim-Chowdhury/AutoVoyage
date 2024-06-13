@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import "./styles.css"; // Import your styles.css file
+import "./styles.css"; 
+import "../Navbar.css"
 
 const HomePage = () => {
     // Search Suggestions
@@ -35,7 +36,7 @@ const HomePage = () => {
     };
 
     return (
-        <div className="body">
+        <div className="homePageBody">
             <main>
                 {/* Hero Image / Slider */}
                 <div className="hero-image">
