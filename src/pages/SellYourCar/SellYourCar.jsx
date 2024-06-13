@@ -1,8 +1,8 @@
 import './SellYourCar.css'
-import { Button, Form, Container, Row, Col } from 'react-bootstrap';
+import { Button, Form, Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
-import FormGroup from '../components/FormGroup/FormGroup';
+import FormGroup from '../../components/FormGroup/FormGroup'
 
 const SellYourCar = () => {
 

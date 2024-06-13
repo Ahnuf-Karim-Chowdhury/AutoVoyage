@@ -10,7 +10,7 @@ import CarReviews from './components/Research/CarReviews';
 import NewCarListings from './components/New/NewCarListings'; 
 import NewConvertibles from './components/New/NewConvertibles';
 import CarFinderQuiz from './components/Research/CarFinderQuiz';
-import SellYourCar from './pages/SellYourCar';
+import SellYourCar from './pages/SellYourCar/SellYourCar';
 function App() {
     return (
         <Router>
