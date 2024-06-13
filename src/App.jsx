@@ -10,6 +10,7 @@ import CarReviews from './components/Research/CarReviews';
 import NewCarListings from './components/New/NewCarListings'; 
 import NewConvertibles from './components/New/NewConvertibles';
 import CarFinderQuiz from './components/Research/CarFinderQuiz';
+import SellYourCar from './pages/SellYourCar';
 function App() {
     return (
         <Router>
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/new-car-listings" element={<NewCarListings />} />
                     <Route path="/new-convertibles"element={<NewConvertibles />} />
                     <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
+                    <Route path="/sell-your-car" element={<SellYourCar />} />
                 </Routes>
             </div>
         </Router>
