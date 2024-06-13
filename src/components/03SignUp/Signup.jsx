@@ -1,50 +1,66 @@
 // Signup.jsx
 import { Link } from 'react-router-dom'; // Import Link
-
+import {produce} from 'immer';
 import React, { useState } from 'react';
 import './Signupstyles.css'; // Import your CSS file
+import '../Navbar.css'
 
 const Signup = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [telephone, setTelephone] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [message, setMessage] = useState('');
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        telephone: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        message: '',
+        messageStyle: {},
+    });
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(
+            produce(draft => {
+                draft[name] = value;
+            })
+        );
+    };
 
     const handleSignupSubmit = (event) => {
         event.preventDefault();
 
-        // Simple client-side validation
+        const { email, password, confirmPassword } = formData;
+
         if (email === 'user@example.com' && password === 'password123' && password === confirmPassword) {
-            setMessage('SignUp successful!');
-            setMessageColor('green');
+            setFormData(
+                produce(draft => {
+                    draft.message = 'SignUp successful!';
+                    draft.messageStyle = { color: 'green' };
+                })
+            );
         } else if (password !== confirmPassword) {
-            setMessage('Passwords do not match.');
-            setMessageColor('red');
+            setFormData(
+                produce(draft => {
+                    draft.message = 'Passwords do not match.';
+                    draft.messageStyle = { color: 'red' };
+                })
+            );
         } else {
-            setMessage('Invalid email or password.');
-            setMessageColor('red');
+            setFormData(
+                produce(draft => {
+                    draft.message = 'Invalid email or password.';
+                    draft.messageStyle = { color: 'red' };
+                })
+            );
         }
     };
 
-    const setMessageColor = (color) => {
-        setMessageStyle({ color });
-    };
-
-    const [messageStyle, setMessageStyle] = useState({});
-
     return (
-        <div className="signup-body">
-{/*             <nav className="login-nav">
-                <Link to="/" className="login-navbar-brand">
-                    AutoVoyage
-                </Link>
-            </nav> */}
+        <>
+        <div className="signupBody">
             <div className="signup-container1">
                 {/* SignUp Page */}
-                <div className="signup-container2" id="signup-container">
+                <div className="signup-container2">
                     <div className="signup-box">
                         <h1>SignUp</h1>
                         <form id="signupForm">
@@ -101,6 +117,7 @@ const Signup = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 
 

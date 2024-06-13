@@ -11,10 +11,13 @@ import NewCarListings from './components/New/NewCarListings';
 import NewConvertibles from './components/New/NewConvertibles';
 import CarFinderQuiz from './components/Research/CarFinderQuiz';
 import SellYourCar from './pages/SellYourCar/SellYourCar';
+import '././components/Navbar.css'; // Import Navbar CSS
+import '././components/./03SignUp/Signupstyles.css'; // Import Signup Styles CSS
+
 function App() {
     return (
         <Router>
-            <div>
+            <div className='mb-10'>
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
