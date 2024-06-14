@@ -1,7 +1,6 @@
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-const FormGroup = ({ type, id, label, placeholder, required, items }) => {
+const FormGroup = ({ type, id, label, placeholder, required, items, rows, text, max }) => {
 
     const s = 'lg{8}'
 
@@ -43,6 +42,18 @@ const FormGroup = ({ type, id, label, placeholder, required, items }) => {
                     required
                 />)}
             </div>
+        );
+    }
+    else if (type === 'textarea') {
+        return (
+            <Form.Group className="mb-3" controlId={id}>
+                <Form.Label>{label}</Form.Label>
+                {required ? <Form.Control as={type} rows={rows} placeholder={placeholder} maxLength={max} required />
+                : <Form.Control as={type} rows={rows} placeholder={placeholder} maxLength={max} />}
+                <Form.Text id={id} muted>
+                    {text}
+                </Form.Text>
+            </Form.Group>
         );
     }
     else {
