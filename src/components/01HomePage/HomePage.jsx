@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./styles.css"; 
 import "../Navbar.css"
+import Filter from '../01HomePage_01-Filter/Filter';
 
 const HomePage = () => {
     // Search Suggestions
@@ -58,7 +59,8 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-
+                
+                <Filter />
 
                 {/* Car Cards */}
                 <section className="car-cards">
