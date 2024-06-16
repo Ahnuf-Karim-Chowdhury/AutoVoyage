@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
     <nav className='nav'>
       <Link to="/" className="logo">
-        AutoVoyage
+         AutoVoyage
       </Link>
       
       <ul className="nav-links">
