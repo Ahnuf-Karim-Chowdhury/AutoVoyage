@@ -1,9 +1,12 @@
 // Signup.jsx
 import { Link } from 'react-router-dom'; // Import Link
-import {produce} from 'immer';
+import { produce } from 'immer';
 import React, { useState } from 'react';
 import './Signupstyles.css'; // Import your CSS file
 import '../Navbar.css'
+import axios from 'axios';
+
+const url = "http://localhost:6969/auth/register";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -53,6 +56,10 @@ const Signup = () => {
                 })
             );
         }
+        console.log(formData);
+        axios.post(url, formData)
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
     };
 
     return (

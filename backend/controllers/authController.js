@@ -1,9 +1,90 @@
+import User from "../models/userModel.js";
+import { hashPassword, comparePassword } from "../utils/helpers.js"
+import jwt from "jsonwebtoken";
+
+const lifetime = "31d";
+
+
 export const register = async (req, res) => {
     try {
-        console.log("registered!");
-        return res.status(200).json({ message: req.body });
+        const { firstName, lastName, telephone, email, password } = req.body;
+        // console.log(`Password: ${password}`);
+        // console.log(`first name: ${firstName}`);
+
+        const emailExists = await User.findOne({ email }).select(["email"]);
+        if (emailExists)
+            return res.status(400).json({ error: "Email already in use" });
+        const telExists = await User.findOne({ telephone }).select(["telephone"]);
+        if (telExists)
+            return res.status(400).json({ error: "Telephone already in use" });
+
+        const hashedPassword = await hashPassword(password);
+
+        const newUser = new User({
+            firstName,
+            lastName,
+            telephone,
+            email,
+            password: hashedPassword,
+        });
+        const createdUser = await User.create(newUser);
+        return res.status(201).json({ createdUser });
     } catch (error) {
         console.log(error);
         return res.status(500).json("Internal Server Error");
+    }
+}
+
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email }).select(["-__v"]);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const matchPassword = await comparePassword(password, user.password);
+        if (!matchPassword) {
+            return res.status(400).json({ error: "Wrong password" });
+        }
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: lifetime }
+        );
+
+        res.cookie("token", token, {
+            maxAge: lifetime,
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            path: "/",
+        });
+        return res.status(200).json(user);
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json("Internal Server Error");
+    }
+}
+
+
+export const logout = (req, res) => {
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            path: "/",
+        });
+        return res.status(200).json({ message: "Logout successful" });
+        
+    } catch (error) {
+        return res.status(500).json({ error: error });
     }
 }
