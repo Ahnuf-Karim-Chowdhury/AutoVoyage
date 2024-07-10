@@ -72,11 +72,11 @@ const Signup = () => {
                             <form id="signupForm" onSubmit={handleSignupSubmit}>
                                 <div className="signup-input-group">
                                     <label htmlFor="first-name">First Name</label>
-                                    <input type="text" id="first-name" name="first-name" onChange={handleInputChange} required />
+                                    <input type="text" id="first-name" name="firstName" onChange={handleInputChange} required />
                                 </div>
                                 <div className="signup-input-group">
                                     <label htmlFor="last-name">Last Name</label>
-                                    <input type="text" id="last-name" name="last-name" onChange={handleInputChange} required />
+                                    <input type="text" id="last-name" name="lastName" onChange={handleInputChange} required />
                                 </div>
                                 <div className="signup-input-group">
                                     <label htmlFor="telephone">Telephone</label>

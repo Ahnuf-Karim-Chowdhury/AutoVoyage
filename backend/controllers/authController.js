@@ -28,7 +28,8 @@ export const register = async (req, res) => {
             password: hashedPassword,
         });
         const createdUser = await User.create(newUser);
-        return res.status(201).json({ createdUser });
+        console.log(createdUser);
+        return res.status(201).send(createdUser);
     } catch (error) {
         console.log(error);
         return res.status(500).json("Internal Server Error");
