@@ -3,6 +3,9 @@ import './Loginstyles.css';
 import useWindowSize from "../utils/useWindowSize.js";
 import { Link } from 'react-router-dom';
 import { produce } from 'immer';
+import axios from 'axios';
+
+const url = "http://localhost:6969/auth/register";
 
 const Login = () => {
     const [state, setState] = useState({
@@ -25,7 +28,7 @@ const Login = () => {
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();
-
+        
         setState(produce(draft => {
             if (state.email === 'user@example.com' && state.password === 'password123') {
                 draft.message = 'Login successful!';
@@ -35,6 +38,10 @@ const Login = () => {
                 draft.messageStyle = { color: 'red' };
             }
         }));
+        console.log(state);
+        axios.post(url, state)
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
     };
 
     const toggleForgotPassword = () => {
@@ -45,7 +52,6 @@ const Login = () => {
 
     const handleForgotPasswordSubmit = (event) => {
         event.preventDefault();
-
         setState(produce(draft => {
             if (state.resetEmail === 'user@example.com') {
                 draft.resetMessage = 'Password reset link sent!';
