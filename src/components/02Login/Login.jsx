@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { produce } from 'immer';
 import axios from 'axios';
 
-const url = "http://localhost:6969/auth/register";
+const url = "http://localhost:6969/auth/login";
+axios.defaults.withCredentials = true;
 
 const Login = () => {
     const [state, setState] = useState({
@@ -28,20 +29,23 @@ const Login = () => {
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();
-        
-        setState(produce(draft => {
-            if (state.email === 'user@example.com' && state.password === 'password123') {
-                draft.message = 'Login successful!';
-                draft.messageStyle = { color: 'green' };
-            } else {
-                draft.message = 'Invalid email or password.';
-                draft.messageStyle = { color: 'red' };
-            }
-        }));
-        console.log(state);
+    
         axios.post(url, state)
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+            .then(response => {
+                setState(produce(draft => {
+                    draft.message = 'Login successful!';
+                    draft.messageStyle = { color: 'green' };
+                }));
+    
+                console.log(response.data);
+            })
+            .catch(error => {
+                setState(produce(draft => {
+                    draft.message = 'Invalid email or password.';
+                    draft.messageStyle = { color: 'red' };
+                }));
+                console.error(error.response.data);
+            });
     };
 
     const toggleForgotPassword = () => {

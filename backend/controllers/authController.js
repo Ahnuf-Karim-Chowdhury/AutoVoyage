@@ -2,8 +2,7 @@ import User from "../models/userModel.js";
 import { hashPassword, comparePassword } from "../utils/helpers.js"
 import jwt from "jsonwebtoken";
 
-const lifetime = "31d";
-
+const lifetime = 31 * 24 * 60 * 60 * 1000;
 
 export const register = async (req, res) => {
     try {
@@ -16,7 +15,7 @@ export const register = async (req, res) => {
             return res.status(400).json({ error: "Email already in use" });
         const telExists = await User.findOne({ telephone }).select(["telephone"]);
         if (telExists)
-            return res.status(400).json({ error: "Telephone already in use" });
+            return res.status(400).json({ error: "Phone no. already in use" });
 
         const hashedPassword = await hashPassword(password);
 
@@ -42,12 +41,12 @@ export const login = async (req, res) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email }).select(["-__v"]);
         if (!user) {
-            return res.status(404).json({ error: "User not found" });
+            return res.status(404).json("User not found");
         }
 
         const matchPassword = await comparePassword(password, user.password);
         if (!matchPassword) {
-            return res.status(400).json({ error: "Wrong password" });
+            return res.status(400).send("Wrong password");
         }
 
         const token = jwt.sign(
@@ -66,11 +65,11 @@ export const login = async (req, res) => {
             sameSite: "none",
             path: "/",
         });
-        return res.status(200).json(user);
+        return res.status(200).send("login successful");
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json("Internal Server Error");
+        return res.status(500).send("Internal Server Error");
     }
 }
 
@@ -83,9 +82,9 @@ export const logout = (req, res) => {
             sameSite: "none",
             path: "/",
         });
-        return res.status(200).json({ message: "Logout successful" });
-        
+        return res.status(200).send("Logout successful");
+
     } catch (error) {
-        return res.status(500).json({ error: error });
+        return res.status(500).send(error);
     }
 }
