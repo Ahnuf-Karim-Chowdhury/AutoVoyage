@@ -3,8 +3,13 @@ import { Button, Form, Container, Row, Col, Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import FormGroup from '../../components/FormGroup/FormGroup'
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+const url = "http://localhost:6969/cars/sell";
 
 const SellYourCar = () => {
+    const navigate = useNavigate();
     const currentYear = new Date().getFullYear();
     const condition = ['Used', 'New'];
     const transmission = ['Manual', 'Automatic'];
@@ -12,18 +17,18 @@ const SellYourCar = () => {
     const [years, setYears] = useState([]); // only used to show years in the select menu, not meant to be stored in the database!
 
     const [data, setData] = useState({
-        formBrand: '',
-        formModel: '',
-        formLicense: '',
-        formYear: currentYear,
-        formMileage: 0,
-        formTransmission: transmission[0],
-        formCondition: condition[0],
-        formExteriorColour: '',
-        formInteriorColour: '',
-        formFuelType: fuelType[0],
-        formPrice: 0,
-        formSellerNotes: '',
+        carBrand: '',
+        carModel: '',
+        carLicense: '',
+        carYear: String(currentYear),
+        carMileage: '',
+        carTransmission: transmission[0],
+        carCondition: condition[0],
+        carExteriorColour: '',
+        carInteriorColour: '',
+        carFuelType: fuelType[0],
+        carPrice: '',
+        carSellerNotes: '',
         coverImg: null,
         carImgs: [],
         docs: []
@@ -40,6 +45,13 @@ const SellYourCar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
+
+        axios.post(url, data)
+        .then(res => {
+            console.log(res);
+            navigate('/');
+        })
+        .catch(e => console.log(e));
     }
 
     return (
@@ -82,7 +94,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6} lg={4}>
                             <FormGroup
                                 type='text'
-                                id='formBrand'
+                                id='carBrand'
                                 label='Brand'
                                 placeholder='Toyota, Ford...'
                                 required={true}
@@ -93,7 +105,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6} lg={4}>
                             <FormGroup
                                 type='text'
-                                id='formModel'
+                                id='carModel'
                                 label='Model'
                                 placeholder='Corolla, Mustang...'
                                 required={true}
@@ -104,7 +116,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={12} lg={4}>
                             <FormGroup
                                 type='text'
-                                id='formLicense'
+                                id='carLicense'
                                 label='License Plate Number'
                                 placeholder='39-1931...'
                                 required={true}
@@ -117,7 +129,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6}>
                             <FormGroup
                                 type='select'
-                                id='formYear'
+                                id='carYear'
                                 label='Year of Manufacture'
                                 required={true}
                                 items={years}
@@ -128,7 +140,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6}>
                             <FormGroup
                                 type='number'
-                                id='formMileage'
+                                id='carMileage'
                                 label='Mileage (in Kilometers)'
                                 placeholder='Enter Mileage in Kilometers'
                                 required={true}
@@ -141,7 +153,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6}>
                             <FormGroup
                                 type='select'
-                                id='formTransmission'
+                                id='carTransmission'
                                 label='Transmission Type'
                                 required={true}
                                 items={transmission}
@@ -152,7 +164,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6}>
                             <FormGroup
                                 type='select'
-                                id='formCondition'
+                                id='carCondition'
                                 label='Condition'
                                 required={true}
                                 items={condition}
@@ -165,7 +177,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6}>
                             <FormGroup
                                 type='text'
-                                id='formExteriorColour'
+                                id='carExteriorColour'
                                 label='Exterior Colour'
                                 placeholder='Arctic Gray Metallic, Black Sapphire...'
                                 required={true}
@@ -176,7 +188,7 @@ const SellYourCar = () => {
                         <Col xs={12} sm={6}>
                             <FormGroup
                                 type='text'
-                                id='formInteriorColour'
+                                id='carInteriorColour'
                                 label='Interior Colour'
                                 placeholder='Black...'
                                 required={true}
@@ -190,7 +202,7 @@ const SellYourCar = () => {
                             <FormGroup
                                 type='radio'
                                 label='Fuel Type'
-                                id='formFuelType'
+                                id='carFuelType'
                                 required={true}
                                 items={fuelType}
                                 data={data}
@@ -214,7 +226,7 @@ const SellYourCar = () => {
                         <Col>
                             <FormGroup
                                 type='number'
-                                id='formPrice'
+                                id='carPrice'
                                 label='Selling Price (in USD)'
                                 placeholder='Enter your selling price in US Dollars'
                                 required={true}
@@ -227,7 +239,7 @@ const SellYourCar = () => {
                         <Col>
                             <FormGroup
                                 type='textarea'
-                                id='formSellerNotes'
+                                id='carSellerNotes'
                                 label='Seller Notes'
                                 placeholder='This car...'
                                 rows={5}

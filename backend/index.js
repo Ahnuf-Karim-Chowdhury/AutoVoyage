@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import 'dotenv/config';
 import authRouter from "./routes/auth.js";
+import carsRouter from "./routes/cars.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173", }));
 //routes
 app.get("/", (req, res) => res.json({ message: "API is working" }));
 app.use('/auth', authRouter);
+app.use('/cars', carsRouter);
 
 const port = process.env.PORT || 5001;
 

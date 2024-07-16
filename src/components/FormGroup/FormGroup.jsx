@@ -2,6 +2,18 @@ import Form from 'react-bootstrap/Form';
 
 const FormGroup = ({ type, id, label, placeholder, required, items, rows, text, max, data, setData }) => {
 
+
+    const handleNumberChange = (e) => {
+        let value = e.target.value;
+        if (isNaN(value))
+            value = '';
+
+        setData({
+            ...data,
+            [id]: value === '' ? '' : parseInt(value)
+        });
+    };
+
     if (type === 'select') {
         return (
             <Form.Group className='mb-3' controlId={id}>
@@ -22,8 +34,8 @@ const FormGroup = ({ type, id, label, placeholder, required, items, rows, text, 
             <Form.Group className='mb-3' controlId={id}>
                 <Form.Label>{label}</Form.Label>
                 {required
-                    ? <Form.Control type={type} placeholder={placeholder} min="0" required value={data[id]} onChange={(e) => setData({ ...data, [id]: e.target.value })} />
-                    : <Form.Control type="text" placeholder={placeholder} min="0" value={data[id]} onChange={(e) => setData({ ...data, [id]: e.target.value })} />}
+                    ? <Form.Control type={type} placeholder={placeholder} min="0" required value={data[id]} onChange={handleNumberChange} />
+                    : <Form.Control type="text" placeholder={placeholder} min="0" value={data[id]} onChange={handleNumberChange} />}
             </Form.Group>
         );
     }

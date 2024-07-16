@@ -7,15 +7,13 @@ const lifetime = 31 * 24 * 60 * 60 * 1000;
 export const register = async (req, res) => {
     try {
         const { firstName, lastName, telephone, email, password } = req.body;
-        // console.log(`Password: ${password}`);
-        // console.log(`first name: ${firstName}`);
 
         const emailExists = await User.findOne({ email }).select(["email"]);
         if (emailExists)
-            return res.status(400).json({ error: "Email already in use" });
+            return res.status(400).send("Email already in use");
         const telExists = await User.findOne({ telephone }).select(["telephone"]);
         if (telExists)
-            return res.status(400).json({ error: "Phone no. already in use" });
+            return res.status(400).send("Phone no. already in use");
 
         const hashedPassword = await hashPassword(password);
 
@@ -31,7 +29,7 @@ export const register = async (req, res) => {
         return res.status(201).send(createdUser);
     } catch (error) {
         console.log(error);
-        return res.status(500).json("Internal Server Error");
+        return res.status(500).send("Internal Server Error");
     }
 }
 
