@@ -48,7 +48,13 @@ const carSchema = new Schema({
     carSellerNotes: {
         type: String,
         required: false,
-    },  
+    }, 
+    seller: {
+        firstName: { type: String, required: true },
+        lastName: { type: String, required: true },
+        email: { type: String, required: true },
+        telephone: { type: String, required: true }
+    } 
 });
 
 const Car = model("Car", carSchema);

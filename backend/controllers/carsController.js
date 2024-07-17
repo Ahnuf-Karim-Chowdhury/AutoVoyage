@@ -1,7 +1,9 @@
 import Car from "../models/carModel.js";
+import { getCurrentUser } from "../utils/userHelpers.js"
 
 export const sell = async (req, res) => {
     try {
+        const user = await getCurrentUser(req);
         const { carBrand, carModel, carLicense, carYear, carMileage, carTransmission, carCondition, carExteriorColour, carInteriorColour, carFuelType, carPrice, carSellerNotes } = req.body;
         const newCar = new Car({
             carBrand,
@@ -15,7 +17,13 @@ export const sell = async (req, res) => {
             carInteriorColour,
             carFuelType,
             carPrice,
-            carSellerNotes
+            carSellerNotes,
+            seller: {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                telephone: user.telephone
+            }
         });
 
         const createdCar = await Car.create(newCar);
