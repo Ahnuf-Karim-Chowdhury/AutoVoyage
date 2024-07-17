@@ -13,6 +13,7 @@ import CarFinderQuiz from './components/Research/CarFinderQuiz';
 import SellYourCar from './pages/SellYourCar/SellYourCar';
 import '././components/Navbar.css'; // Import Navbar CSS
 import '././components/./03SignUp/Signupstyles.css'; // Import Signup Styles CSS
+import CarSubmissionSuccess from './pages/SellYourCar/success';
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/new-convertibles"element={<NewConvertibles />} />
                     <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
                     <Route path="/sell-your-car" element={<SellYourCar />} />
+                    <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
                 </Routes>
             </div>
         </Router>

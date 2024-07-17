@@ -56,7 +56,8 @@ const SellYourCar = () => {
         }
         setYears(newYears);
     }, []);
-
+    
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
@@ -64,7 +65,7 @@ const SellYourCar = () => {
         axios.post(url, data)
             .then(res => {
                 console.log(res);
-                navigate('/');
+                navigate('/car-submission-success');
             })
             .catch(e => {
                 console.log(e);
