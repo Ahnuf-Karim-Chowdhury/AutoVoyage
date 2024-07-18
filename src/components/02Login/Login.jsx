@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import './Loginstyles.css';
 import useWindowSize from "../utils/useWindowSize.js";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { produce } from 'immer';
-
 import axios from 'axios';
 
 const url = "http://localhost:6969/auth/login";
 axios.defaults.withCredentials = true;
 
-const Login = ({ setIsLoggedIn }) => {
-    const navigate = useNavigate();
-    
+const Login = () => {
     const [state, setState] = useState({
         email: '',
         password: '',
@@ -20,8 +17,7 @@ const Login = ({ setIsLoggedIn }) => {
         resetEmail: '',
         resetMessage: '',
         messageStyle: {},
-        resetMessageStyle: {},
-        isLoggedIn: false
+        resetMessageStyle: {}
     });
 
     const handleChange = (e) => {
@@ -34,22 +30,19 @@ const Login = ({ setIsLoggedIn }) => {
     const handleLoginSubmit = (event) => {
         event.preventDefault();
     
-        axios.post(url, { email: state.email, password: state.password })
+        axios.post(url, state)
             .then(response => {
                 setState(produce(draft => {
                     draft.message = 'Login successful!';
                     draft.messageStyle = { color: 'green' };
-                    draft.isLoggedIn = true;
                 }));
-                setIsLoggedIn(true); // Update the App state
+    
                 console.log(response.data);
-                navigate('/');  // Redirect to the home page
             })
             .catch(error => {
                 setState(produce(draft => {
                     draft.message = 'Invalid email or password.';
                     draft.messageStyle = { color: 'red' };
-                    draft.isLoggedIn = false;
                 }));
                 console.error(error.response.data);
             });
@@ -161,9 +154,9 @@ const Login = ({ setIsLoggedIn }) => {
                                 <Link to="/signup">
                                     Don't have an account?
                                 </Link>
-                                <a href="#" onClick={toggleForgotPassword} id="login-forgot-password-link" className="right-link">
+                                <Link to="/forgotpassword" onClick={toggleForgotPassword} id="login-forgot-password-link" className="right-link">
                                     Forgot Password?
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
