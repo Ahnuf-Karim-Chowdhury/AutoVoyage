@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Loginstyles.css';
 import useWindowSize from "../utils/useWindowSize.js";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { produce } from 'immer';
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ const url = "http://localhost:6969/auth/login";
 axios.defaults.withCredentials = true;
 
 const Login = () => {
+    const navigate = useNavigate();
     const [state, setState] = useState({
         email: '',
         password: '',
@@ -38,6 +39,7 @@ const Login = () => {
                 }));
     
                 console.log(response.data);
+                navigate('/');  // Redirect to the home page
             })
             .catch(error => {
                 setState(produce(draft => {

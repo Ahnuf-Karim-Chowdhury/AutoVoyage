@@ -1,5 +1,5 @@
 // Signup.jsx
-import { Link } from 'react-router-dom'; // Import Link
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { produce } from 'immer';
 import React, { useState } from 'react';
 import './Signupstyles.css'; // Import your CSS file
@@ -20,46 +20,78 @@ const Signup = () => {
         messageStyle: {},
     });
 
+    const navigate = useNavigate(); // Initialize useNavigate
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData(
             produce(draft => {
                 draft[name] = value;
+                if (name === 'confirmPassword') {
+                    if (draft.password !== value) {
+                        draft.message = 'Passwords do not match.';
+                        draft.messageStyle = { color: 'red' };
+                    } else {
+                        draft.message = '';
+                        draft.messageStyle = {};
+                    }
+                }
             })
         );
     };
 
-    const handleSignupSubmit = (event) => {
+    const handleSignupSubmit = async (event) => {
         event.preventDefault();
 
-        const { email, password, confirmPassword } = formData;
+        const { password, confirmPassword } = formData;
 
-        if (email === 'user@example.com' && password === 'password123' && password === confirmPassword) {
-            setFormData(
-                produce(draft => {
-                    draft.message = 'SignUp successful!';
-                    draft.messageStyle = { color: 'green' };
-                })
-            );
-        } else if (password !== confirmPassword) {
+        if (password !== confirmPassword) {
             setFormData(
                 produce(draft => {
                     draft.message = 'Passwords do not match.';
                     draft.messageStyle = { color: 'red' };
                 })
             );
-        } else {
-            setFormData(
-                produce(draft => {
-                    draft.message = 'Invalid email or password.';
-                    draft.messageStyle = { color: 'red' };
-                })
-            );
+            return;
         }
-        console.log(formData);
-        axios.post(url, formData)
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+
+        try {
+            const response = await axios.post(url, formData, { withCredentials: true });
+            if (response.status === 201) {
+                setFormData(
+                    produce(draft => {
+                        draft.message = 'SignUp successful!';
+                        draft.messageStyle = { color: 'green' };
+                    })
+                );
+                navigate('/login'); // Redirect to home page on successful signup
+            } else {
+                setFormData(
+                    produce(draft => {
+                        draft.message = 'Signup failed. Please try again.';
+                        draft.messageStyle = { color: 'red' };
+                    })
+                );
+            }
+        } catch (error) {
+            if (error.response) {
+                setFormData(
+                    produce(draft => {
+                        draft.message = error.response.data;
+                        draft.messageStyle = { color: 'red' };
+                    })
+                );
+            } else {
+                setFormData(
+                    produce(draft => {
+                        draft.message = 'An unexpected error occurred. Please try again later.';
+                        draft.messageStyle = { color: 'red' };
+                    })
+                );
+            }
+            console.log(error.message);
+            console.error(error.message);
+        }
     };
 
     return (
@@ -92,7 +124,7 @@ const Signup = () => {
                                 </div>
                                 <div className="signup-input-group">
                                     <label htmlFor="confirm-password">Confirm Password</label>
-                                    <input type="password" id="confirm-password" name="confirm-password" onChange={handleInputChange} required />
+                                    <input type="password" id="confirm-password" name="confirmPassword" onChange={handleInputChange} required />
                                 </div>
                                 <div className="signup-input-group">
                                     <button type="submit">SignUp</button>
@@ -128,4 +160,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
