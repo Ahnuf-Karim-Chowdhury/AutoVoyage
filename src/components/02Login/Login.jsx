@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Loginstyles.css';
 import useWindowSize from "../utils/useWindowSize.js";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { produce } from 'immer';
 import axios from 'axios';
 
@@ -19,6 +19,7 @@ const Login = () => {
         messageStyle: {},
         resetMessageStyle: {}
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,8 +37,8 @@ const Login = () => {
                     draft.message = 'Login successful!';
                     draft.messageStyle = { color: 'green' };
                 }));
-    
-                console.log(response.data);
+            console.log(response.data);
+            navigate('/', { replace: true });
             })
             .catch(error => {
                 setState(produce(draft => {
