@@ -11,30 +11,33 @@ import NewCarListings from './components/New/NewCarListings';
 import NewConvertibles from './components/New/NewConvertibles';
 import CarFinderQuiz from './components/Research/CarFinderQuiz';
 import SellYourCar from './pages/SellYourCar/SellYourCar';
-import '././components/Navbar.css'; // Import Navbar CSS
-import '././components/./03SignUp/Signupstyles.css'; // Import Signup Styles CSS
+import { AuthProvider } from '../backend/AuthStuff/AuthContext.jsx'; // Import AuthProvider
+import './components/Navbar.css';
+import './components/03SignUp/Signupstyles.css';
 import CarSubmissionSuccess from './pages/SellYourCar/success';
 
 function App() {
     return (
         <Router>
-            <div className='mb-10'>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/forgotpassword" element={<ForgotPassword />} />
-                    <Route path="/deals" element={<Deals />} />
-                    <Route path="/compare-cars" element={<CompareCars />} />
-                    <Route path="/car-reviews" element={<CarReviews />} />
-                    <Route path="/new-car-listings" element={<NewCarListings />} />
-                    <Route path="/new-convertibles"element={<NewConvertibles />} />
-                    <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
-                    <Route path="/sell-your-car" element={<SellYourCar />} />
-                    <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
-                </Routes>
-            </div>
+            <AuthProvider>
+                <div className='mb-10'>
+                    <Navbar />
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/forgotpassword" element={<ForgotPassword />} />
+                        <Route path="/deals" element={<Deals />} />
+                        <Route path="/compare-cars" element={<CompareCars />} />
+                        <Route path="/car-reviews" element={<CarReviews />} />
+                        <Route path="/new-car-listings" element={<NewCarListings />} />
+                        <Route path="/new-convertibles" element={<NewConvertibles />} />
+                        <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
+                        <Route path="/sell-your-car" element={<SellYourCar />} />
+                        <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
+                    </Routes>
+                </div>
+            </AuthProvider>
         </Router>
     );
 }

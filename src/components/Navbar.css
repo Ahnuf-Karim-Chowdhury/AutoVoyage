@@ -119,6 +119,68 @@
 .auth-links a:hover {
     color: #ff1493;
 }
+/* Profile Dropdown */
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff1493;
+  /* margin-left: 10px; */
+  margin-right: 100px; 
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.1);
+  border-color: #ffffff;
+}
+
+.auth-links .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(68, 68, 68, 0.7);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.auth-links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.auth-links .dropdown-content a, .dropdown-content button {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  text-align: left;
+}
+
+.auth-links .dropdown-content a:hover, .dropdown-content button:hover {
+  background-color: rgba(0, 0, 0, 1); /* Background color with 50% transparency */
+  color: rgba(255, 20, 147, 0.9); /* Change text color to white on hover */
+  cursor: pointer;
+}
+
+
+
+/* Ensuring the button matches the links */
+.dropdown-logout-btn {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  width: 100%;
+}
+
+.dropdown-logout-btn:hover {
+  background-color: #ff1493;
+}
+
 
 .profile-icon {
     margin-left: 20px; /* Adjust as needed */
@@ -322,3 +384,4 @@
       padding: 20px;
     }
   }
+

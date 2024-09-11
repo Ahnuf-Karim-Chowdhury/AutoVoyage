@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'; // Import Link
-import "./Navbar.css"
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx'; // Import useAuth
+import './Navbar.css';
 
 const Navbar = () => {
+  const { isAuthenticated, logout } = useAuth();
+  
   return (
-    <>
     <nav className='nav'>
       <Link to="/" className="logo">
         AutoVoyage
@@ -58,14 +60,29 @@ const Navbar = () => {
       </div>
 
       <div className="auth-links">
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
-      </div>
-      <div className="profile-icon">
-        <Link to="/profile"><i className="fas fa-user-circle"></i></Link>
+        {isAuthenticated ? (
+          <>
+            <ul className="nav-links">
+              <li className="dropdown">
+                <a href="#" className="dropbtn">
+                  <img src="p.png" alt="Profile Icon" className="profile-img" />
+                </a>
+                <div className="dropdown-content">
+                  <Link to="/profile">View Profile</Link>
+                  <Link to="/cart">Cart</Link>
+                  <button className="dropdown-logout-btn" onClick={logout}>Log Out</button>
+                </div>
+              </li>
+            </ul>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        )}
       </div>
     </nav>
-    </>
   );
 };
 
