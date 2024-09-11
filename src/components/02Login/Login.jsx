@@ -4,11 +4,13 @@ import useWindowSize from "../utils/useWindowSize.js";
 import { Link, useNavigate } from 'react-router-dom';
 import { produce } from 'immer';
 import axios from 'axios';
+import { useAuth } from '../../../backend/AuthStuff/AuthContext.jsx'; // Import useAuth to get authentication state
 
 const url = "http://localhost:6969/auth/login";
 axios.defaults.withCredentials = true;
 
 const Login = () => {
+    const { isAuthenticated, login } = useAuth(); // Get login status and login function
     const [state, setState] = useState({
         email: '',
         password: '',
@@ -30,15 +32,20 @@ const Login = () => {
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();
-    
-        axios.post(url, state)
+        
+        axios.post(url, { email: state.email, password: state.password })
             .then(response => {
                 setState(produce(draft => {
                     draft.message = 'Login successful!';
                     draft.messageStyle = { color: 'green' };
                 }));
-            console.log(response.data);
-            navigate('/', { replace: true });
+                console.log(response.data);
+
+                // Assuming response contains user data like username
+                login(); // Call login function from AuthContext to set authentication
+
+                // Navigate to homepage after successful login
+                navigate('/', { replace: true });
             })
             .catch(error => {
                 setState(produce(draft => {
@@ -73,7 +80,12 @@ const Login = () => {
     return (
         <div className="login-body">
             <div className="login-container1">
-                {state.forgotPasswordVisible ? (
+                {isAuthenticated ? ( // If authenticated, show profile text
+                    <div className="profile-container">
+                        <h2>Welcome, [User's Name]</h2> {/* Replace with actual user name */}
+                        <Link to="/profile">Go to Profile</Link>
+                    </div>
+                ) : state.forgotPasswordVisible ? (
                     <div className="login-container2" id="forgot-password-container">
                         <div className="login-box">
                             <h1>Forgot Password</h1>
