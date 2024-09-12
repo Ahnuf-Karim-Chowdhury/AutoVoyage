@@ -1,0 +1,60 @@
+.car-rankings {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f4f4f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .rankings-table {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .rankings-table h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .rankings-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .rankings-table table th,
+  .rankings-table table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .rankings-table table th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .rankings-table table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .rankings-table table tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .chart-container {
+    flex: 1;
+    max-width: 600px;
+  }
+  
+  .chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
