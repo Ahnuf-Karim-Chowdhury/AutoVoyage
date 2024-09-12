@@ -1,0 +1,183 @@
+The jsx file : 
+
+import React, { useState } from 'react';
+import './CarReviews.css';
+
+const CarReviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [message, setMessage] = useState('');
+
+  const handleRatingChange = (event) => {
+    setRating(parseInt(event.target.value));
+  };
+
+  const handleReviewSubmit = (event) => {
+    event.preventDefault();
+    const newReview = {
+      rating: rating,
+      message: message,
+    };
+    setReviews([...reviews, newReview]);
+    setRating(0);
+    setMessage('');
+  };
+
+  return (
+    <div className="car-reviews-container">
+      <h2>Car Reviews</h2>
+      <div className="review-form">
+        <h3>Leave a Review</h3>
+        <form onSubmit={handleReviewSubmit}>
+          <div className="rating-input">
+            <label>Rating:</label>
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value={rating}
+              onChange={handleRatingChange}
+            />
+          </div>
+          <div className="message-input">
+            <label>Review:</label>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows="4"
+            ></textarea>
+          </div>
+          <button type="submit">Submit Review</button>
+        </form>
+      </div>
+      <div className="reviews-list">
+        {reviews.length === 0 ? (
+          <p>No reviews yet.</p>
+        ) : (
+          <ul>
+            {reviews.map((review, index) => (
+              <li key={index}>
+                <div className="review-rating">
+                  Rating: {review.rating} stars
+                </div>
+                <div className="review-message">{review.message}</div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CarReviews;
+
+_________________________________________________________________________________________________________________________________________________________________________________
+<-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+The CSS file :
+
+
+
+.car-reviews-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 50px;
+    background-color: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(255, 105, 180, 0.7));
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+  }
+  
+  .car-reviews-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: whitesmoke;
+  }
+  
+  .review-form {
+    margin-bottom: 20px;
+  }
+  
+  .review-form h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: whitesmoke;
+  }
+  
+  .rating-input,
+  .message-input {
+    margin-bottom: 20px;
+  }
+  
+  .rating-input label,
+  .message-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: whitesmoke;
+  }
+  
+  .rating-input .star-rating {
+    font-size: 2em;
+  }
+  
+  .rating-input .star {
+    cursor: pointer;
+    color: #999;
+  }
+  
+  .message-input textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .message-input textarea::placeholder {
+    color: #999;
+  }
+  
+  .message-input textarea:focus {
+    outline: none;
+    border-color: #0c0802;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    background-color: #3498db; 
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .reviews-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .reviews-list li {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .review-rating {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  
+  .review-message {
+    color: #333;
+    font-size: 1em;
+  }
+  

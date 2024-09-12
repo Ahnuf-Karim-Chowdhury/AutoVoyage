@@ -1,0 +1,116 @@
+.filter-card {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-card-Min-Max-Price-Box {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.filter-group {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-group label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.filter-group input[type="number"] {
+    width: calc(50% - 5px);
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0.3); /* Make input background transparent */
+    color: white; /* Ensure text color is readable */
+}
+
+.filter-group input[type="number"]:not(:last-child) {
+    margin-right: 10px;
+}
+
+.filter-group select {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 50%; /* Adjust width to fit the form size */
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent dark background */
+    color: white; /* Text color */
+    font-size: 16px;
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* Remove default arrow for Safari */
+    -moz-appearance: none; /* Remove default arrow for Firefox */
+    position: relative;
+    z-index: 1;
+}
+.filter-group select.active {
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the transparency level as needed */
+    color: white; /* Text color */
+}
+
+.filter-group select::after {
+    content: '\25BC'; /* Down arrow symbol */
+    color: rgba(0, 0, 0);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.filter-group select option {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background for options */
+    color: black;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ff1493;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+}
+
+button[type="submit"]:hover {
+    background-color: #ff69b4;
+}
+
+@media only screen and (max-width: 768px) {
+    .filter-card {
+        padding: 10px;
+    }
+
+    .filter-card-Min-Max-Price-Box {
+        padding: 10px;
+    }
+
+    .filter-group input[type="number"] {
+        width: calc(100% - 10px);
+        margin-bottom: 10px;
+    }
+
+    .filter-group select {
+        width: 100%;
+    }
+}
