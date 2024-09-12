@@ -16,6 +16,7 @@ import { AuthProvider } from '../backend/AuthStuff/AuthContext.jsx'; // Import A
 import './components/Navbar.css';
 import './components/03SignUp/Signupstyles.css';
 import CarSubmissionSuccess from './pages/SellYourCar/success';
+import Profile from "./components/05Profile/Profile.jsx";
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/sell-your-car" element={<SellYourCar />} />
                         <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
                         <Route path="/car-rankings" element={<CarRankings />} />
+                        <Route path="/profile" element={<Profile />} />
                     </Routes>
                 </div>
             </AuthProvider>

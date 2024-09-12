@@ -1,17 +1,27 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx'; // Import useAuth
+import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx';
 import './Navbar.css';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className='nav'>
+      <button className='menu-btn' onClick={toggleMenu}>
+        <i className="fas fa-bars"></i>
+      </button>
+
       <Link to="/" className="logo">
         AutoVoyage
       </Link>
-      
-      <ul className="nav-links">
+
+      <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
         <li className="dropdown">
           <a href="#" className="dropbtn">New</a>
           <div className="dropdown-content">
@@ -51,8 +61,25 @@ const Navbar = () => {
           </div>
         </li>
         <li><Link to="/sell-your-car">Sell Your Car</Link></li>
+
+        {/* Additional links for mobile view */}
+        <li className="mobile-only">
+          <Link to="/new">New</Link>
+        </li>
+        <li className="mobile-only">
+          <Link to="/used">Used</Link>
+        </li>
+        <li className="mobile-only">
+          <Link to="/electric">Electric</Link>
+        </li>
+        <li className="mobile-only">
+          <Link to="/research">Research</Link>
+        </li>
+        <li className="mobile-only">
+          <Link to="/sell-your-car">Sell Your Car</Link>
+        </li>
       </ul>
-      
+
       <div className="search-box">
         <input type="text" id="search-input" placeholder="Search cars" />
         <i className="fas fa-search"></i>
