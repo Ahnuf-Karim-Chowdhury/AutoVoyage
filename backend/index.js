@@ -5,7 +5,7 @@ import authRouter from "./routes/auth.js";
 import carsRouter from "./routes/cars.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+/* import '@fortawesome/fontawesome-free/css/all.min.css'; */
 
 const app = express();
 
