@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import "./styles.css"; 
 import "../Navbar.css"
 import Filter from '../01HomePage_01-Filter/Filter';
-=======
-import "./styles.css"; // Import your styles.css file
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
 
 const HomePage = () => {
     // Search Suggestions
@@ -41,11 +37,7 @@ const HomePage = () => {
     };
 
     return (
-<<<<<<< HEAD
         <div className="homePageBody">
-=======
-        <div className="body">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
             <main>
                 {/* Hero Image / Slider */}
                 <div className="hero-image">
@@ -67,31 +59,19 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
                 
                 <Filter />
 
                 {/* Car Cards */}
                 <section className="car-cards">
                     <div className="Card">
-=======
-
-
-                {/* Car Cards */}
-                <section className="car-cards">
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car01.jpg" alt="Car 1" />
                         <div className="card-details">
                             <h3>Car Model 1</h3>
                             <p>Details about car 1</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car02.jpg" alt="Car 2" />
                         <div className="card-details">
                             <h3>Car Model 2</h3>
@@ -99,77 +79,49 @@ const HomePage = () => {
                         </div>
                     </div>
                     {/* Repeat this block for each car card */}
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car03.jpg" alt="Car 3" />
                         <div className="card-details">
                             <h3>Car Model 3</h3>
                             <p>Details about car 3</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car04.jpg" alt="Car 4" />
                         <div className="card-details">
                             <h3>Car Model 4</h3>
                             <p>Details about car 4</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car05.jpg" alt="Car 5" />
                         <div className="card-details">
                             <h3>Car Model 5</h3>
                             <p>Details about car 5</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car06.jpg" alt="Car 6" />
                         <div className="card-details">
                             <h3>Car Model 6</h3>
                             <p>Details about car 6</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car07.jpg" alt="Car 7" />
                         <div className="card-details">
                             <h3>Car Model 7</h3>
                             <p>Details about car 7</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car08.jpg" alt="Car 8" />
                         <div className="card-details">
                             <h3>Car Model 8</h3>
                             <p>Details about car 8</p>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="Card">
-=======
-                    <div className="card">
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
                         <img src="car09.jpg" alt="Car 9" />
                         <div className="card-details">
                             <h3>Car Model 9</h3>

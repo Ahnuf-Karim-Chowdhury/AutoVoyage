@@ -10,9 +10,7 @@ import CarReviews from './components/Research/CarReviews';
 import NewCarListings from './components/New/NewCarListings'; 
 import NewConvertibles from './components/New/NewConvertibles';
 import CarFinderQuiz from './components/Research/CarFinderQuiz';
-
 import SellYourCar from './pages/SellYourCar/SellYourCar';
-import EVHub from './components/Electricv/EVHub'; 
 import CarRankings from './components/Research/CarRankings';
 import { AuthProvider } from '../backend/AuthStuff/AuthContext.jsx'; // Import AuthProvider
 import './components/Navbar.css';
@@ -38,31 +36,10 @@ function App() {
                         <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
                         <Route path="/sell-your-car" element={<SellYourCar />} />
                         <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
-                        <Route path="/ev-hub" element={<EVHub />} />
                         <Route path="/car-rankings" element={<CarRankings />} />
                     </Routes>
                 </div>
             </AuthProvider>
-=======
-function App() {
-    return (
-        <Router>
-            <div>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/forgotpassword" element={<ForgotPassword />} />
-                    <Route path="/deals" element={<Deals />} />
-                    <Route path="/compare-cars" element={<CompareCars />} />
-                    <Route path="/car-reviews" element={<CarReviews />} />
-                    <Route path="/new-car-listings" element={<NewCarListings />} />
-                    <Route path="/new-convertibles"element={<NewConvertibles />} />
-                    <Route path="/car-finder-quiz" element={<CarFinderQuiz />} />
-                </Routes>
-            </div>
-
         </Router>
     );
 }

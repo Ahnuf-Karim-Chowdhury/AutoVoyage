@@ -27,16 +27,11 @@
     cursor: pointer;
   }
   
-<<<<<<< HEAD
 .nav-links {
-=======
-  .nav-links {
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
     flex-grow: 1;
 }
 
@@ -200,29 +195,6 @@
 .profile-icon a:hover {
     color: #ccc; /* Hover effect */
 }
-=======
-  }
-  
-  .nav-links li {
-    margin: 0 10px;
-  }
-  
-  .nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .auth-links a {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  
-  .profile-icon a {
-    color: #ffffff;
-    text-decoration: none;
-  }
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
   
   /* Dropdown styles */
   
@@ -412,7 +384,4 @@
       padding: 20px;
     }
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f

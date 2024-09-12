@@ -1,0 +1,16 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-bottom: auto;
+}
+
+.main-content {
+  margin-top: 3rem;  /* Adjust the margin as needed */
+  flex-grow: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    /* styles for screens smaller than 600px */
+  }
+  
