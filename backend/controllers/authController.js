@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import { hashPassword, comparePassword } from "../utils/helpers.js"
 import jwt from "jsonwebtoken";
+import cloudinary from '../cloudinaryConfig.js'; // Adjust the path if necessary
 
 const lifetime = 31 * 24 * 60 * 60 * 1000;
 
@@ -86,3 +87,88 @@ export const logout = (req, res) => {
         return res.status(500).send(error);
     }
 }
+
+export const getProfile = async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const user = await User.findById(userId).select("-password");
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
+      res.status(200).json(user);
+    } catch (error) {
+      console.error("Error in getProfile:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  };
+  
+  export const updateProfile = async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const { firstName, lastName, email } = req.body;
+  
+      // Handle file upload
+      let profilePictureUrl = '';
+      if (req.file) {
+        const result = await cloudinary.uploader.upload_stream(
+          { resource_type: 'image' },
+          (error, result) => {
+            if (error) {
+              throw new Error(`Cloudinary upload failed: ${error.message}`);
+            }
+            profilePictureUrl = result.secure_url;
+          }
+        ).end(req.file.buffer);
+      }
+  
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { firstName, lastName, email, profilePicture: profilePictureUrl },
+        { new: true }
+      ).select("-password");
+  
+      if (!updatedUser) {
+        return res.status(404).send("User not found");
+      }
+  
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      console.error("Error in updateProfile:", error);
+      res.status(500).send(`Internal Server Error: ${error.message}`);
+    }
+  };
+  
+
+
+export const uploadProfilePicture = async (req, res) => {
+  try {
+    const file = req.file; // Assuming you use multer for file upload
+
+    if (!file) {
+      return res.status(400).send('No file uploaded');
+    }
+
+    // Upload to Cloudinary
+    const result = await cloudinary.v2.uploader.upload(file.path, {
+      folder: 'profile_pictures',
+      width: 150,
+      height: 150,
+      crop: 'fill'
+    });
+
+    // Save URL in the database
+    const userId = req.user.id;
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profilePicture: result.secure_url },
+      { new: true }
+    ).select('-password');
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error('Error uploading profile picture:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+  

@@ -1,14 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx';
 import './Navbar.css';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate(); // Create a navigate function
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout(); // Perform the logout action
+    navigate('/'); // Redirect to the home page
   };
 
   return (
@@ -97,7 +103,7 @@ const Navbar = () => {
                 <div className="dropdown-content">
                   <Link to="/profile">View Profile</Link>
                   <Link to="/cart">Cart</Link>
-                  <button className="dropdown-logout-btn" onClick={logout}>Log Out</button>
+                  <button className="dropdown-logout-btn" onClick={handleLogout}>Log Out</button>
                 </div>
               </li>
             </ul>

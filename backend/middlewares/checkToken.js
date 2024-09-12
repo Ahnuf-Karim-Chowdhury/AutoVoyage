@@ -7,7 +7,7 @@ const checkToken = (req, res, next) => {
     return res.status(401).json({ error: "Invalid token" });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, {}, (err, decoded) => {
     if (err) {
       res.clearCookie("token", {
         httpOnly: true,
@@ -17,6 +17,8 @@ const checkToken = (req, res, next) => {
       });
       return res.status(401).json({ error: "Invalid token" });
     }
+
+    req.user = decoded; // Attach user data to req
     next();
   });
 };

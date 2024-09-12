@@ -111,3 +111,36 @@
     text-align: center;
   }
 }
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333; /* Dark background color */
+  color: #f0f0f0; /* Light text color */
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.2); /* Light border color */
+  border-radius: 50%;
+  border-top: 4px solid #f0f0f0; /* Light spinner color */
+  width: 40px;
+  height: 40px;
+  margin-right: 10px; /* Space between spinner and text */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensure the image fits within the circle */
+}
+
