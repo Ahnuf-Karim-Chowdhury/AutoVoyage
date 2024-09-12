@@ -31,7 +31,11 @@
     font-weight: bold;
   }
   
+<<<<<<< HEAD
   /* input[type="text"],
+=======
+  input[type="text"],
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
   select {
     width: 100%;
     padding: 12px;
@@ -66,7 +70,11 @@
   
   button[type="submit"]:hover {
     background-color: #91a8c1;
+<<<<<<< HEAD
   } */
+=======
+  }
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
   
   .result {
     margin-top: 30px;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx'; // Import useAuth
 import './Navbar.css';
@@ -5,6 +6,12 @@ import './Navbar.css';
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   
+=======
+import { Link } from 'react-router-dom'; // Import Link
+import "./Navbar.css"
+
+const Navbar = () => {
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
   return (
     <nav className='nav'>
       <Link to="/" className="logo">
@@ -60,6 +67,7 @@ const Navbar = () => {
       </div>
 
       <div className="auth-links">
+<<<<<<< HEAD
         {isAuthenticated ? (
           <>
             <ul className="nav-links">
@@ -81,6 +89,13 @@ const Navbar = () => {
             <Link to="/signup">Sign Up</Link>
           </>
         )}
+=======
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
+      </div>
+      <div className="profile-icon">
+        <Link to="/profile"><i className="fas fa-user-circle"></i></Link>
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
       </div>
     </nav>
   );

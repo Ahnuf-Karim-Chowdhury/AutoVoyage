@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 body {
   background: linear-gradient(to bottom, #003366, #663399, #ff6699);
 }
 
+=======
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
 .car-reviews-container {
     max-width: 600px;
     margin: 60px auto;
     padding: 50px;
+<<<<<<< HEAD
     background: linear-gradient(to bottom, #003366, #663399, #ff6699);
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
@@ -35,10 +39,41 @@ body {
 
 .rating-input label,
 .message-input label {
+=======
+    background-color: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(255, 105, 180, 0.7));
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+  }
+  
+  .car-reviews-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: whitesmoke;
+  }
+  
+  .review-form {
+    margin-bottom: 20px;
+  }
+  
+  .review-form h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: whitesmoke;
+  }
+  
+  .rating-input,
+  .message-input {
+    margin-bottom: 20px;
+  }
+  
+  .rating-input label,
+  .message-input label {
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
     display: block;
     margin-bottom: 5px;
     font-size: 1.1em;
     color: whitesmoke;
+<<<<<<< HEAD
 }
 
 .rating-input .star-rating {
@@ -51,11 +86,26 @@ body {
 }
 
 .message-input textarea {
+=======
+  }
+  
+  .rating-input .star-rating {
+    font-size: 2em;
+  }
+  
+  .rating-input .star {
+    cursor: pointer;
+    color: #999;
+  }
+  
+  .message-input textarea {
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
     width: 100%;
     padding: 10px;
     font-size: 1em;
     border-radius: 5px;
     border: 1px solid #ccc;
+<<<<<<< HEAD
 }
 
 .message-input textarea::placeholder {
@@ -69,6 +119,20 @@ body {
 }
 
 .submit-button {
+=======
+  }
+  
+  .message-input textarea::placeholder {
+    color: #999;
+  }
+  
+  .message-input textarea:focus {
+    outline: none;
+    border-color: #0c0802;
+  }
+  
+  .submit-button {
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
     padding: 10px 20px;
     font-size: 1.1em;
     background-color: #3498db; 
@@ -76,6 +140,7 @@ body {
     border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
+<<<<<<< HEAD
 }
 
 .submit-button:hover {
@@ -107,3 +172,35 @@ body {
     color: whitesmoke;
     font-size: 1em;
 }
+=======
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .reviews-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .reviews-list li {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .review-rating {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  
+  .review-message {
+    color: #333;
+    font-size: 1em;
+  }
+  
+>>>>>>> 2aa5575cbc578acdd56b3ec28a41a4dc564fdb1f
