@@ -9,7 +9,7 @@ html, body {
   padding: 30px;
   border-radius: 10px;
   background-color: #3a3f54;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
   color: #fff;
   position: absolute; 
