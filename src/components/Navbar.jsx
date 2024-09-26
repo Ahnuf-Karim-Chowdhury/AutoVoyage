@@ -1,20 +1,19 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
 import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx';
 import './Navbar.css';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate(); // Create a navigate function
-
+  const navigate = useNavigate(); 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleLogout = () => {
-    logout(); // Perform the logout action
-    navigate('/'); // Redirect to the home page
+    logout(); 
+    navigate('/'); 
   };
 
   return (

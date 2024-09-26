@@ -4,6 +4,7 @@ import checkToken from "../middlewares/checkToken.js";
 import multer from 'multer';
 
 
+
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -14,7 +15,6 @@ router.route("/profile").get(checkToken, getProfile);
 router.route("/profile")
   .get(checkToken, getProfile)
   .put(checkToken, upload.single('profilePicture'), updateProfile);
-  
 
 
 export default router;

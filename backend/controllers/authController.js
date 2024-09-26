@@ -107,29 +107,30 @@ export const getProfile = async (req, res) => {
       const userId = req.user.id;
       const { firstName, lastName, email } = req.body;
   
-      // Handle file upload
-      let profilePictureUrl = '';
-      if (req.file) {
-        const result = await cloudinary.uploader.upload_stream(
-          { resource_type: 'image' },
-          (error, result) => {
-            if (error) {
-              throw new Error(`Cloudinary upload failed: ${error.message}`);
-            }
-            profilePictureUrl = result.secure_url;
-          }
-        ).end(req.file.buffer);
+      // Fetch the current user from the database
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).send("User not found");
       }
   
+      // Handle file upload
+      let profilePictureUrl = user.profilePicture; // Default to current profile picture
+      if (req.file) {
+        const result = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'profile_pictures',
+          width: 150,
+          height: 150,
+          crop: 'fill',
+        });
+        profilePictureUrl = result.secure_url;
+      }
+  
+      // Update user profile in the database
       const updatedUser = await User.findByIdAndUpdate(
         userId,
         { firstName, lastName, email, profilePicture: profilePictureUrl },
         { new: true }
-      ).select("-password");
-  
-      if (!updatedUser) {
-        return res.status(404).send("User not found");
-      }
+      ).select('-password');
   
       res.status(200).json(updatedUser);
     } catch (error) {
@@ -137,6 +138,8 @@ export const getProfile = async (req, res) => {
       res.status(500).send(`Internal Server Error: ${error.message}`);
     }
   };
+  
+  
   
 
 
