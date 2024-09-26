@@ -1,19 +1,32 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../backend/AuthStuff/AuthContext.jsx';
 import './Navbar.css';
+import axios from 'axios';
+
+const url = "http://localhost:6969/auth/logout";
+axios.defaults.withCredentials = true;
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleLogout = () => {
-    logout(); 
-    navigate('/'); 
+    axios.post(url, {})
+      .then(res => {
+        logout();
+        console.log(res);
+        navigate('/');
+      })
+      .catch(e => {
+        logout();
+        console.log(e);
+        alert("Failed to logout");
+      });
   };
 
   return (
