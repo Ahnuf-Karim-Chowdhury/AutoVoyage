@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './Profile.css';
+import React, { useState, useEffect } from "react";
+import "./Profile.css";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -7,9 +7,9 @@ const Profile = () => {
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: "",
+    lastName: "",
+    email: "",
   });
   const [file, setFile] = useState(null);
 
@@ -58,12 +58,12 @@ const Profile = () => {
     e.preventDefault();
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('firstName', formData.firstName);
-      formDataToSend.append('lastName', formData.lastName);
-      formDataToSend.append('email', formData.email);
+      formDataToSend.append("firstName", formData.firstName);
+      formDataToSend.append("lastName", formData.lastName);
+      formDataToSend.append("email", formData.email);
 
       if (file) {
-        formDataToSend.append('profilePicture', file);
+        formDataToSend.append("profilePicture", file);
       }
 
       const response = await fetch("http://localhost:6969/auth/profile", {
@@ -106,19 +106,25 @@ const Profile = () => {
     <div className="profile-container">
       <main className="profile-main">
         <div className="profile-card">
-          <img 
-            src={user.profilePicture || "https://via.placeholder.com/150"} 
-            alt="Profile" 
+          <img
+            src={user.profilePicture || "https://via.placeholder.com/150"}
+            alt="Profile"
             className="profile-image"
           />
+
           <div className="profile-info">
-            <h2 className="profile-name">{user.firstName} {user.lastName}</h2>
+            <h2 className="profile-name">
+              {user.firstName} {user.lastName}
+            </h2>
             <p className="profile-email">Email: {user.email}</p>
             <p className="profile-member-since">
               Member since: {new Date(user.createdAt).toLocaleDateString()}
             </p>
             <div className="profile-buttons">
-              <button className="profile-button edit-button" onClick={() => setIsEditing(true)}>
+              <button
+                className="profile-button edit-button"
+                onClick={() => setIsEditing(true)}
+              >
                 Edit Profile
               </button>
               <button className="profile-button view-listings-button">
@@ -168,7 +174,9 @@ const Profile = () => {
                 />
               </label>
               <button type="submit">Save Changes</button>
-              <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+              <button type="button" onClick={() => setIsEditing(false)}>
+                Cancel
+              </button>
             </form>
           </div>
         )}
