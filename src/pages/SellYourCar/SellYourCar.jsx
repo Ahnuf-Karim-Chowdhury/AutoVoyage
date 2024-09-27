@@ -56,13 +56,43 @@ const SellYourCar = () => {
         }
         setYears(newYears);
     }, []);
-    
-    
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
 
-        axios.post(url, data)
+        const formData = new FormData();
+
+        formData.append("carBrand", data.carBrand);
+        formData.append("carModel", data.carModel);
+        formData.append("carLicense", data.carLicense);
+        formData.append("carYear", data.carYear);
+        formData.append("carMileage", data.carMileage);
+        formData.append("carTransmission", data.carTransmission);
+        formData.append("carCondition", data.carCondition);
+        formData.append("carExteriorColour", data.carExteriorColour);
+        formData.append("carInteriorColour", data.carInteriorColour);
+        formData.append("carFuelType", data.carFuelType);
+        formData.append("carPrice", data.carPrice);
+        formData.append("carSellerNotes", data.carSellerNotes);
+
+        if (data.coverImg) {
+            formData.append("coverImg", data.coverImg);
+        }
+
+        for (let i = 0; i < data.carImgs.length; i++) {
+            formData.append("carImgs", data.carImgs[i]);
+        }
+
+        for (let i = 0; i < data.docs.length; i++) {
+            formData.append("docs", data.docs[i]);
+        }
+
+        axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
             .then(res => {
                 console.log(res);
                 navigate('/car-submission-success');
@@ -71,7 +101,8 @@ const SellYourCar = () => {
                 console.log(e);
                 alert("Failed to submit the car. Please try again.");
             });
-    }
+    };
+
 
     if (!isLoggedIn) {
         return (
@@ -80,8 +111,8 @@ const SellYourCar = () => {
             </div>
         );
     }
-    
-    
+
+
     else {
         return (
             <div className="container-body">
