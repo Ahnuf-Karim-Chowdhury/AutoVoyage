@@ -24,7 +24,7 @@ const userSchema = new Schema({
     required: true,
   },
   profilePicture: {
-    type: String, // URL to the profile picture
+    type: String,
   },
 });
 
