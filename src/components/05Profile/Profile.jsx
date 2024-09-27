@@ -56,6 +56,8 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("firstName", formData.firstName);
@@ -82,12 +84,14 @@ const Profile = () => {
       }
     } catch (error) {
       setError(`Error updating profile: ${error.message}`);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   if (loading) {
     return (
-      <div className="loading-container">
+      <div className="loading-overlay">
         <div className="loading-spinner"></div>
         <div>Loading...</div>
       </div>
@@ -136,7 +140,8 @@ const Profile = () => {
 
         {isEditing && (
           <div className="edit-form">
-            <h2>Edit Profile</h2>
+            <h1 className="bold-big">Edit Profile</h1>
+            <br />
             <form onSubmit={handleSubmit}>
               <label>
                 First Name:
@@ -147,6 +152,8 @@ const Profile = () => {
                   onChange={handleChange}
                 />
               </label>
+              <br />
+              <br />
               <label>
                 Last Name:
                 <input
@@ -156,6 +163,8 @@ const Profile = () => {
                   onChange={handleChange}
                 />
               </label>
+              <br />
+              <br />
               <label>
                 Email:
                 <input
@@ -165,16 +174,23 @@ const Profile = () => {
                   onChange={handleChange}
                 />
               </label>
+              <br />
+              <br />
               <label>
                 Profile Picture:
                 <input
                   type="file"
                   name="profilePicture"
                   onChange={handleFileChange}
+                  style={{ marginRight: '10px' }}
                 />
               </label>
-              <button type="submit">Save Changes</button>
-              <button type="button" onClick={() => setIsEditing(false)}>
+              <br />
+              <br />
+              <button className="button-spacing" type="submit">
+                Save Changes
+              </button>
+              <button className="cancel-button" type="button" onClick={() => setIsEditing(false)}>
                 Cancel
               </button>
             </form>
