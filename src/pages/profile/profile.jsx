@@ -4,7 +4,7 @@ import './profile.css';
 const Profile = () => {
   return (
     <div className='body'>
-      Profile the fuck
+      Profile 
     </div>
   );
 }
