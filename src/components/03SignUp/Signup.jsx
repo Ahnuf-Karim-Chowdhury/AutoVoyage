@@ -97,7 +97,7 @@ const Signup = () => {
                         <div className="signup-forgot-password">
                             <Link to="/login">Already have an account?</Link>
                         </div>
-                        <div className="signup-divider-container">
+{/*                         <div className="signup-divider-container">
                             <hr className="signup-divider-line" />
                             <span className="signup-divider-text">or</span>
                             <hr className="signup-divider-line" />
@@ -111,7 +111,7 @@ const Signup = () => {
                             <button type="button" className="facebook-button">
                                 <span className="icon-facebook"></span> Continue with Facebook
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

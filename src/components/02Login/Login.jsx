@@ -143,7 +143,7 @@ const Login = () => {
                                 <div className="login-input-group">
                                     <button type="submit">Login</button>
                                 </div>
-                                <div className="login-divider-container">
+{/*                                 <div className="login-divider-container">
                                     <hr className="login-divider-line" />
                                     <span className="login-divider-text">or</span>
                                     <hr className="login-divider-line" />
@@ -158,7 +158,7 @@ const Login = () => {
                                     <button type="button" className="facebook-button">
                                         <span className="icon-facebook"></span> Continue with Facebook
                                     </button>
-                                </div>
+                                </div> */}
                                 <div id="login-message" className="login-message" style={state.messageStyle}>
                                     {state.message}
                                 </div>
