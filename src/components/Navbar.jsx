@@ -35,7 +35,7 @@ const Navbar = () => {
         <i className="fas fa-bars"></i>
       </button>
 
-      <Link to="/" className="logo">
+      <Link to="/" className="logo" >
         AutoVoyage
       </Link>
 
@@ -43,59 +43,42 @@ const Navbar = () => {
         <li className="dropdown">
           <a href="#" className="dropbtn">New</a>
           <div className="dropdown-content">
-            <Link to="/deals">Deals</Link>
-            <Link to="/new-car-listings">New Car Listings</Link>
-            <Link to="/new-convertibles">New Convertibles</Link>
+            <Link to="/deals" className="dropbtn" onClick={toggleMenu}>Deals</Link>
+            <Link to="/new-car-listings" className="dropbtn" onClick={toggleMenu}>New Car Listings</Link>
+            <Link to="/new-convertibles" className="dropbtn" onClick={toggleMenu}>New Convertibles</Link>
           </div>
         </li>
         <li className="dropdown">
           <a href="#" className="dropbtn">Used</a>
           <div className="dropdown-content">
-            <Link to="/used-car-listings">Used Car Listings</Link>
-            <Link to="/used-evs">Used EVs</Link>
-            <Link to="/used-suvs">Used SUVs</Link>
-            <Link to="/used-trucks">Used Trucks</Link>
-            <Link to="/used-vans">Used Vans</Link>
-            <Link to="/used-convertibles">Used Convertibles</Link>
+            <Link to="/used-car-listings" className="dropbtn" onClick={toggleMenu}>Used Car Listings</Link>
+            <Link to="/used-evs" className="dropbtn" onClick={toggleMenu}>Used EVs</Link>
+            <Link to="/used-suvs" className="dropbtn" onClick={toggleMenu}>Used SUVs</Link>
+            <Link to="/used-trucks" className="dropbtn" onClick={toggleMenu}>Used Trucks</Link>
+            <Link to="/used-vans" className="dropbtn" onClick={toggleMenu}>Used Vans</Link>
+            <Link to="/used-convertibles" className="dropbtn" onClick={toggleMenu}>Used Convertibles</Link>
           </div>
         </li>
         <li className="dropdown">
           <a href="#" className="dropbtn">Electric</a>
           <div className="dropdown-content">
-            <Link to="/ev-hub">EV Hub</Link>
-            <Link to="/new-evs">New EVs</Link>
-            <Link to="/ev-incentives">EV Incentives</Link>
-            <Link to="/ev-deals">EV Deals</Link>
-            <Link to="/buyers-guide">Buyers Guide</Link>
+            <Link to="/ev-hub" className="dropbtn" onClick={toggleMenu}>EV Hub</Link>
+            <Link to="/new-evs" className="dropbtn" onClick={toggleMenu}>New EVs</Link>
+            <Link to="/ev-incentives" className="dropbtn" onClick={toggleMenu}>EV Incentives</Link>
+            <Link to="/ev-deals" className="dropbtn" onClick={toggleMenu}>EV Deals</Link>
+            <Link to="/buyers-guide" className="dropbtn" onClick={toggleMenu}>Buyers Guide</Link>
           </div>
         </li>
         <li className="dropdown">
           <a href="#" className="dropbtn">Research</a>
           <div className="dropdown-content">
-            <Link to="/car-reviews">Car Reviews</Link>
-            <Link to="/car-rankings">Car Rankings</Link>
-            <Link to="/compare-cars">Compare Cars</Link>
-            <Link to="/car-finder-quiz">Car Finder Quiz</Link>
+            <Link to="/car-reviews" className="dropbtn" onClick={toggleMenu}>Car Reviews</Link>
+            <Link to="/car-rankings" className="dropbtn" onClick={toggleMenu}>Car Rankings</Link>
+            <Link to="/compare-cars" className="dropbtn" onClick={toggleMenu}>Compare Cars</Link>
+            <Link to="/car-finder-quiz" className="dropbtn" onClick={toggleMenu}>Car Finder Quiz</Link>
           </div>
         </li>
-        <li><Link to="/sell-your-car">Sell Your Car</Link></li>
-
-        {/* Additional links for mobile view */}
-        <li className="mobile-only">
-          <Link to="/new">New</Link>
-        </li>
-        <li className="mobile-only">
-          <Link to="/used">Used</Link>
-        </li>
-        <li className="mobile-only">
-          <Link to="/electric">Electric</Link>
-        </li>
-        <li className="mobile-only">
-          <Link to="/research">Research</Link>
-        </li>
-        <li className="mobile-only">
-          <Link to="/sell-your-car">Sell Your Car</Link>
-        </li>
+        <li><Link to="/sell-your-car" className="dropbtn" onClick={toggleMenu}>Sell Your Car</Link></li>
       </ul>
 
       <div className="search-box">

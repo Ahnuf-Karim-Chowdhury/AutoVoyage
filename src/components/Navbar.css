@@ -105,7 +105,7 @@
 .search-box {
   position: relative;
   margin-right: 3%;
-  margin-left: 1%;
+  margin-left: 5%;
   background-color: red;
   color: red;
   border-radius: 10px;
@@ -243,8 +243,15 @@
     background: rgba(0, 0, 0, 0.9);
     padding: 10px;
     z-index: 2;
+    
+    flex-direction: column;
+    justify-content: center; /* Center items vertically */
+    align-items: center;
   }
-
+  .nav-links.show {
+    width: 70%;
+    transition: width 0.3s ease-in-out;
+  }
   .nav-links.show {
     display: flex;
   }
