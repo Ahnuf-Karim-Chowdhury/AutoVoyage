@@ -100,6 +100,21 @@
   .search-box input:focus + i {
     color: #0000ff;
   }
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff1493;
+    margin-right: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.1);
+    border-color: #ffffff;
+}
 }
 
 .search-box {
@@ -276,6 +291,15 @@
   .mobile-only {
     display: block;
   }
+  .profile-img {
+    margin-right: 0px;  /* Reduced margin to fit beside search bar */
+  }
+
+.profile-img:hover {
+    transform: scale(1.1);
+    border-color: #ffffff;
 }
+}
+
 
 

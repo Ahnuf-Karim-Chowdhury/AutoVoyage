@@ -10,6 +10,7 @@ axios.defaults.withCredentials = true;
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,6 +28,22 @@ const Navbar = () => {
         console.log(e);
         alert("Failed to logout");
       });
+  };
+
+  const handleSearch = () => {
+    if (searchQuery) {
+      axios.get(`http://localhost:6969/cars/search?query=${searchQuery}`)
+        .then(res => {
+          if (res.data.found) {
+            console.log("Car found:", res.data.car);
+          } else {
+            console.log("Car not found");
+          }
+        })
+        .catch(e => {
+          console.log("Error searching car:", e);
+        });
+    }
   };
 
   return (
@@ -82,9 +99,14 @@ const Navbar = () => {
       </ul>
 
       <div className="search-box">
-        <input type="text" id="search-input" placeholder="Search cars" />
-        <i className="fas fa-search"></i>
-        <div className="suggestions-box" id="suggestions-box"></div>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Search cars" 
+          value={searchQuery} 
+          onChange={(e) => setSearchQuery(e.target.value)} 
+        />
+        <i className="fas fa-search" onClick={handleSearch}></i>
       </div>
 
       <div className="auth-links">

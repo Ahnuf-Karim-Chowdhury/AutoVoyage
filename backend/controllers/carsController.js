@@ -69,6 +69,29 @@ export const sell = async (req, res) => {
     }
 }
 
+// Search for a car
+export const searchCar = async (req, res) => {
+  const searchQuery = req.query.query;
+
+  try {
+    const car = await Car.findOne({
+      $or: [
+        { carBrand: { $regex: searchQuery, $options: "i" } },  // Case-insensitive search
+        { carModel: { $regex: searchQuery, $options: "i" } }
+      ]
+    });
+
+    if (car) {
+      console.log("Found");  // Log "Found" if car is present in the database
+      return res.json({ found: true, car });
+    } else {
+      console.log("Not Found");  // Log "Not Found" if car is not in the database
+      return res.json({ found: false });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+
 export const getCars = async (req, res) => {
   try {
     const cars = await Car.find();
@@ -76,5 +99,6 @@ export const getCars = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching car data");
+
   }
 };
