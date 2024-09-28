@@ -1,72 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Circles } from 'react-loader-spinner'; 
 import './Deals.css';
-
-const fetchDeals = () => {
-  // Simulating an API call to fetch deals
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          title: 'Summer Savings Event',
-          description: 'Enjoy significant savings of up to $3,000 on select vehicle models this summer!',
-          imageUrl: 'image4.jpg',
-          expiryDate: '2024-07-01',
-          rating: 4.5,
-        },
-        {
-          id: 2,
-          title: '0% Financing for 60 Months',
-          description: 'Take advantage of 0% APR financing for up to 60 months, available on approved credit.',
-          imageUrl: 'image5.jpg',
-          expiryDate: '2024-08-15',
-          rating: 4.8,
-        },
-        {
-          id: 3,
-          title: 'Lease Specials',
-          description: 'Lease a new car today with exceptionally low monthly payments. Attractive terms available.',
-          imageUrl: 'image6.webp',
-          expiryDate: '2024-06-30',
-          rating: 4.2,
-        },
-      ]);
-    }, 500);
-  });
-};
+import { Link } from "react-router-dom";
 
 const Deals = () => {
-  const [deals, setDeals] = useState([]);
+  const [recentCars, setRecentCars] = useState([]);  
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    fetchDeals().then((data) => {
-      setDeals(data);
-    });
+    axios.get("http://localhost:6969/cars/recent")  
+      .then((response) => {
+        setRecentCars(response.data); 
+        setLoading(false);  
+      })
+      .catch((error) => {
+        console.error("Error fetching recent cars data:", error);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Circles color="#e91e63" height={80} width={80} />
+      </div>
+    );
+  }
 
   return (
     <div className="deals-container">
-      <h1>Current Deals</h1>
-      {deals.length === 0 ? (
-        <p>Loading deals...</p>
-      ) : (
-        <div className="deals-list">
-          {deals.map((deal) => (
-            <div key={deal.id} className="deal-card">
-              <img src={deal.imageUrl} alt={deal.title} className="deal-image" />
-              <div className="deal-info">
-                <h2>{deal.title}</h2>
-                <p>{deal.description}</p>
-                <p className="deal-expiry">Expires on: {new Date(deal.expiryDate).toLocaleDateString()}</p>
-                <div className="deal-rating">
-                  {'⭐'.repeat(Math.floor(deal.rating))}{' '}
-                  {deal.rating % 1 ? '⭐️' : ''} ({deal.rating})
+      <h1>Recent Deals</h1>
+      <div className="deals-list">
+        {recentCars.length > 0 ? (
+          recentCars.map((car) => (
+            <Link
+                to={`/car/${car._id}`}
+                key={car._id}
+                style={{ textDecoration: "none" }}
+              >
+              <div className="deal-card" key={car._id}>
+                <img src={car.coverImg || 'default_car_image.jpg'} alt={`${car.carBrand} ${car.carModel}`} className="deal-image" />
+                <div className="deal-info">
+                  <h2>{car.carBrand} {car.carModel}</h2>
+                  <p>Year: {car.carYear}</p>
+                  <p>Price: {car.carPrice} BDT</p>
+                  <p>Mileage: {car.carMileage} km</p>
+                  <p>Contact: {car.seller.telephone}</p>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            </Link>
+          ))
+        ) : (
+          <h2>No recent deals available at the moment.</h2>
+        )}
+      </div>
     </div>
   );
 };

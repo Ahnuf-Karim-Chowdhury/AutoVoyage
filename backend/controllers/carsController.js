@@ -118,3 +118,14 @@ export const getCarById = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 }
+
+export const getRecentCars = async (req, res) => {
+  const limit = 3;
+  try {
+    const recentCars = await Car.find().sort({ _id: -1 }).limit(limit);
+    console.log(recentCars);
+    res.status(200).json(recentCars);
+  } catch (error) {
+    res.status(500).send("Error fetching recent cars");
+  }
+};
