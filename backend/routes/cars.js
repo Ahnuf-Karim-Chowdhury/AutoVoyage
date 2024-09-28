@@ -14,6 +14,17 @@ router.route("/sell").get(checkToken, (req, res) => {
     { name: 'docs', maxCount: 6 }
 ]), sell);
 
+
+
+
+
+
+
+
+
+
+
+
 // Search route
 router.get("/search", searchCar);
 
