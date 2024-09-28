@@ -292,15 +292,8 @@
     display: block;
   }
   .profile-img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ff1493;
-    margin-right: 15px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+    margin-right: 0px;  /* Reduced margin to fit beside search bar */
+  }
 
 .profile-img:hover {
     transform: scale(1.1);
