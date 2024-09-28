@@ -72,7 +72,7 @@ const Navbar = () => {
               Deals
             </Link>
             <Link
-              to="/new-car-listings"
+              to="/newcars"
               className="dropbtn"
               onClick={toggleMenu}
             >
@@ -93,7 +93,7 @@ const Navbar = () => {
           </a>
           <div className="dropdown-content">
             <Link
-              to="/used-car-listings"
+              to="/usedcars"
               className="dropbtn"
               onClick={toggleMenu}
             >

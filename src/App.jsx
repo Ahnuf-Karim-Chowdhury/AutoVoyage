@@ -18,7 +18,8 @@ import './components/03SignUp/Signupstyles.css';
 import CarSubmissionSuccess from './pages/SellYourCar/success';
 import Profile from "./components/05Profile/Profile.jsx";
 import CarDetails from './components/06CarDetails/CarDetails';
-
+import UsedCarsPage from './components/09UsedCars/usedCars.jsx';
+import NewCars from "./components/10newCars/newCars.jsx"
 function App() {
     return (
         <Router>
@@ -40,6 +41,8 @@ function App() {
                         <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
                         <Route path="/car-rankings" element={<CarRankings />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/usedcars" element={<UsedCarsPage />} />
+                        <Route path="/newcars" element={<NewCars />} />
                         <Route path="/car/:carId" element={<CarDetails />} />
                     </Routes>
                 </div>
