@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "./styles.css";
 import "../Navbar.css"
 import Filter from '../01HomePage_01-Filter/Filter';
@@ -74,20 +75,22 @@ const HomePage = () => {
                 <section className="car-cards">
                     {cars.length > 0 ? (
                         cars.map((car) => (
-                            <div className="Card" key={car._id}>
-                                <img src={car.coverImg} alt={`${car.carBrand} ${car.carModel}`} />
-                                <div className="card-details">
-                                    <h1 style={{ fontSize: "35px" }}>{car.carBrand} {car.carModel}</h1>
-                                    <p>Year: {car.carYear}</p>
-                                    <p>Price: {car.carPrice} BDT</p>
-                                    <p>Condition: {car.carCondition}</p>
-                                    <p>Contact: {car.seller.telephone}</p>
-                                    {/* {car.carSellerNotes && <p>Notes: {car.carSellerNotes}</p>} */}
+                            <Link to={`/car/${car._id}`} key={car._id} style={{ textDecoration: 'none' }}>
+                                <div className="Card" key={car._id}>
+                                    <img src={car.coverImg} alt={`${car.carBrand} ${car.carModel}`} />
+                                    <div className="card-details">
+                                        <h1 style={{ fontSize: "35px" }}>{car.carBrand} {car.carModel}</h1>
+                                        <p>Year: {car.carYear}</p>
+                                        <p>Price: {car.carPrice} BDT</p>
+                                        <p>Condition: {car.carCondition}</p>
+                                        <p>Contact: {car.seller.telephone}</p>
+                                        {/* {car.carSellerNotes && <p>Notes: {car.carSellerNotes}</p>} */}
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))
                     ) : (
-                        <h1 style={{ textAlign: "center" }}>No cars available at the moment.</h1>
+                        <h1 className="h1" style={{ textAlign: "center" }}>No cars available at the moment.</h1>
                     )}
 
                 </section>
