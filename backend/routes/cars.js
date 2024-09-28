@@ -1,5 +1,5 @@
 import express from "express";
-import { sell } from "../controllers/carsController.js";
+import { sell, getCars } from "../controllers/carsController.js";
 import checkToken from "../middlewares/checkToken.js";
 import upload from '../middlewares/multer.js';
 
@@ -13,5 +13,7 @@ router.route("/sell").get(checkToken, (req, res) => {
     { name: 'carImgs', maxCount: 10 },
     { name: 'docs', maxCount: 6 }
 ]), sell);
+
+router.get('/get', getCars);
 
 export default router;
