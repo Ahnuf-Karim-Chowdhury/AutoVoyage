@@ -17,6 +17,7 @@ import './components/Navbar.css';
 import './components/03SignUp/Signupstyles.css';
 import CarSubmissionSuccess from './pages/SellYourCar/success';
 import Profile from "./components/05Profile/Profile.jsx";
+import CarDetails from './components/06CarDetails/CarDetails';
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                         <Route path="/car-submission-success" element={<CarSubmissionSuccess />} />
                         <Route path="/car-rankings" element={<CarRankings />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/car/:carId" element={<CarDetails />} />
                     </Routes>
                 </div>
             </AuthProvider>

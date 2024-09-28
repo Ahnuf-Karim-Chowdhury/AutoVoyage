@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import FormGroup from '../../components/FormGroup/FormGroup'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Rings } from 'react-loader-spinner';
 
 const url = "http://localhost:6969/cars/sell";
 axios.defaults.withCredentials = true;
@@ -17,6 +18,7 @@ const SellYourCar = () => {
     const fuelType = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
     const [years, setYears] = useState([]); // only used to show years in the select menu, not meant to be stored in the database!
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [data, setData] = useState({
         carBrand: '',
@@ -60,6 +62,7 @@ const SellYourCar = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         const formData = new FormData();
 
@@ -95,10 +98,12 @@ const SellYourCar = () => {
         })
             .then(res => {
                 console.log(res);
+                setIsLoading(false);
                 navigate('/car-submission-success');
             })
             .catch(e => {
                 console.log(e);
+                setIsLoading(false);
                 alert("Failed to submit the car. Please try again.");
             });
     };
@@ -111,8 +116,19 @@ const SellYourCar = () => {
             </div>
         );
     }
-
-
+    else if (isLoading) {
+        return (
+            <div className="loading-container">
+                <Rings
+                    height="100"
+                    width="100"
+                    color="blue"
+                    ariaLabel="loading"
+                />
+                <h2 className="mt-3">Uploading your car details...</h2>
+            </div>
+        );
+    }
     else {
         return (
             <div className="container-body">
@@ -287,7 +303,7 @@ const SellYourCar = () => {
                                 <FormGroup
                                     type='number'
                                     id='carPrice'
-                                    label='Selling Price (in USD)'
+                                    label='Selling Price (in BDT)'
                                     placeholder='Enter your selling price in US Dollars'
                                     required={true}
                                     data={data}

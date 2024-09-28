@@ -1,5 +1,5 @@
 import express from "express";
-import { sell, searchCar , getCars } from "../controllers/carsController.js";
+import { sell, searchCar , getCars, getCarById } from "../controllers/carsController.js";
 import checkToken from "../middlewares/checkToken.js";
 import upload from '../middlewares/multer.js';
 import Car from '../models/carModel.js';
@@ -18,6 +18,7 @@ router.route("/sell").get(checkToken, (req, res) => {
 // Search route
 router.get("/search", searchCar);
 router.get('/get', getCars);
+router.get('/:carId', getCarById);
 
 
 export default router;

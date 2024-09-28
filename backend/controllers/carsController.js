@@ -67,7 +67,7 @@ export const sell = async (req, res) => {
         console.log(error);
         return res.status(500).send("Internal Server Error");
     }
-}
+};
 
 // Search for cars
 export const searchCar = async (req, res) => {
@@ -109,6 +109,21 @@ export const getCars = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching car data");
-
   }
 };
+
+export const getCarById = async (req, res) => {
+  try {
+    const carId = req.params.carId; 
+    const car = await Car.findById(carId);
+
+    if (!car) {
+      return res.status(404).send("Car not found");
+    }
+
+    res.status(200).json(car);
+  } catch (error) {
+    console.error("Error fetching car details:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
