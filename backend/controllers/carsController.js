@@ -68,3 +68,13 @@ export const sell = async (req, res) => {
         return res.status(500).send("Internal Server Error");
     }
 }
+
+export const getCars = async (req, res) => {
+  try {
+    const cars = await Car.find();
+    res.status(200).send(cars);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching car data");
+  }
+};
