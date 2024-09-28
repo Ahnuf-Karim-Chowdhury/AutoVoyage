@@ -22,6 +22,7 @@ app.get("/", (req, res) => res.json({ message: "API is working" }));
 app.use('/auth', authRouter);
 app.use('/cars', carsRouter);
 
+
 const port = process.env.PORT || 5001;
 
 app.listen(port, () => {

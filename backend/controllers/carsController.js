@@ -69,28 +69,38 @@ export const sell = async (req, res) => {
     }
 }
 
-// Search for a car
+// Search for cars
 export const searchCar = async (req, res) => {
   const searchQuery = req.query.query;
 
-  try {
-    const car = await Car.findOne({
-      $or: [
-        { carBrand: { $regex: searchQuery, $options: "i" } },  // Case-insensitive search
-        { carModel: { $regex: searchQuery, $options: "i" } }
-      ]
-    });
+  console.log("Search query received:", searchQuery);
 
-    if (car) {
-      console.log("Found");  // Log "Found" if car is present in the database
-      return res.json({ found: true, car });
-    } else {
-      console.log("Not Found");  // Log "Not Found" if car is not in the database
-      return res.json({ found: false });
-    }
+  if (!searchQuery || searchQuery.trim() === "") {
+      return res.status(400).json({ message: "Search query cannot be empty." });
+  }
+
+  try {
+      const cars = await Car.find({
+          $or: [
+              { carBrand: { $regex: searchQuery, $options: "i" } },
+              { carModel: { $regex: searchQuery, $options: "i" } }
+          ]
+      });
+
+      console.log("Cars found:", cars.length);
+
+      if (cars.length > 0) {
+          return res.json({ found: true, cars });
+      } else {
+          return res.json({ found: false });
+      }
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Internal Server Error" });
+      console.error(error);
+      return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
 
 export const getCars = async (req, res) => {
   try {

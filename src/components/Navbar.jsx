@@ -10,7 +10,8 @@ axios.defaults.withCredentials = true;
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,21 +31,23 @@ const Navbar = () => {
       });
   };
 
-  const handleSearch = () => {
-    if (searchQuery) {
-      axios.get(`http://localhost:6969/cars/search?query=${searchQuery}`)
-        .then(res => {
-          if (res.data.found) {
-            console.log("Car found:", res.data.car);
-          } else {
-            console.log("Car not found");
-          }
-        })
-        .catch(e => {
-          console.log("Error searching car:", e);
-        });
+  const handleSearch = async () => {
+    if (searchInput.trim() === "") return; // Prevent search if input is empty
+    try {
+        const response = await axios.get(`http://localhost:6969/cars/search?query=${searchInput}`);
+        console.log("Search results:", response.data);
+        setSearchResults(response.data.found ? response.data.cars : []); // Set search results
+    } catch (error) {
+        console.error("Error searching for cars:", error);
     }
-  };
+};
+
+const handleSearchKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
+};
+
 
   return (
     <nav className='nav'>
@@ -99,14 +102,27 @@ const Navbar = () => {
       </ul>
 
       <div className="search-box">
-        <input 
-          type="text" 
-          id="search-input" 
-          placeholder="Search cars" 
-          value={searchQuery} 
-          onChange={(e) => setSearchQuery(e.target.value)} 
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search cars"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          onKeyPress={handleSearchKeyPress}
         />
         <i className="fas fa-search" onClick={handleSearch}></i>
+        <div className="suggestions-box" id="suggestions-box">
+          {searchResults.length > 0 && (
+            <ul>
+              {searchResults.map((car, index) => (
+                <li key={index}>
+                  <p>{car.carBrand} {car.carModel}</p>
+                  {/* You can display other car details here */}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       <div className="auth-links">
