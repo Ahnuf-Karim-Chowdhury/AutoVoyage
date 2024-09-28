@@ -287,7 +287,7 @@ const SellYourCar = () => {
                                 <FormGroup
                                     type='number'
                                     id='carPrice'
-                                    label='Selling Price (in USD)'
+                                    label='Selling Price (in BDT)'
                                     placeholder='Enter your selling price in US Dollars'
                                     required={true}
                                     data={data}
