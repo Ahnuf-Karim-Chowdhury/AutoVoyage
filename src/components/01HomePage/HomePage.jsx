@@ -5,7 +5,8 @@ import Filter from '../01HomePage_01-Filter/Filter';
 import axios from "axios";
 
 const HomePage = () => {
-    // Search Suggestions
+    const [searchInput, setSearchInput] = useState(''); 
+    const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [cars, setCars] = useState([]);
 

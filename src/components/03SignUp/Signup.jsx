@@ -32,31 +32,6 @@ const Signup = () => {
 
     const handleSignupSubmit = (event) => {
         event.preventDefault();
-
-        //const { email, password, confirmPassword } = formData;
-
-        // if (email === 'user@example.com' && password === 'password123' && password === confirmPassword) {
-        //     setFormData(
-        //         produce(draft => {
-        //             draft.message = 'SignUp successful!';
-        //             draft.messageStyle = { color: 'green' };
-        //         })
-        //     );
-        // } else if (password !== confirmPassword) {
-        //     setFormData(
-        //         produce(draft => {
-        //             draft.message = 'Passwords do not match.';
-        //             draft.messageStyle = { color: 'red' };
-        //         })
-        //     );
-        // } else {
-        //     setFormData(
-        //         produce(draft => {
-        //             draft.message = 'Invalid email or password.';
-        //             draft.messageStyle = { color: 'red' };
-        //         })
-        //     );
-        // }
         console.log(formData);
         axios.post(url, formData)
         .then(res => { 
