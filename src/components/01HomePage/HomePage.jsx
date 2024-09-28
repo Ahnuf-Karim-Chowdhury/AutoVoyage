@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import "./styles.css"; 
+import "./styles.css";
 import "../Navbar.css"
 import Filter from '../01HomePage_01-Filter/Filter';
+import axios from "axios";
 
 const HomePage = () => {
     // Search Suggestions
     const [searchTerm, setSearchTerm] = useState('');
-    const cars = [
-        "Car Model 1",
-        "Car Model 2",
-        // ... other car models
-        "Car Model 9"
-    ];
+    const [cars, setCars] = useState([]);
 
     const filteredCars = cars.filter(car =>
-        car.toLowerCase().includes(searchTerm.toLowerCase())
+        car.carBrand.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Slider
     const images = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
     const slideInterval = 3000;
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        axios.get("http://localhost:6969/cars/get")
+            .then((response) => {
+                console.log(response.data)
+                setCars(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching cars data:", error);
+            });
+    }, []);
 
     useEffect(() => {
         const autoSlide = setInterval(() => {
@@ -59,75 +66,28 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                
+
                 <Filter />
 
                 {/* Car Cards */}
                 <section className="car-cards">
-                    <div className="Card">
-                        <img src="car01.jpg" alt="Car 1" />
-                        <div className="card-details">
-                            <h3>Car Model 1</h3>
-                            <p>Details about car 1</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car02.jpg" alt="Car 2" />
-                        <div className="card-details">
-                            <h3>Car Model 2</h3>
-                            <p>Details about car 2</p>
-                        </div>
-                    </div>
-                    {/* Repeat this block for each car card */}
-                    <div className="Card">
-                        <img src="car03.jpg" alt="Car 3" />
-                        <div className="card-details">
-                            <h3>Car Model 3</h3>
-                            <p>Details about car 3</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car04.jpg" alt="Car 4" />
-                        <div className="card-details">
-                            <h3>Car Model 4</h3>
-                            <p>Details about car 4</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car05.jpg" alt="Car 5" />
-                        <div className="card-details">
-                            <h3>Car Model 5</h3>
-                            <p>Details about car 5</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car06.jpg" alt="Car 6" />
-                        <div className="card-details">
-                            <h3>Car Model 6</h3>
-                            <p>Details about car 6</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car07.jpg" alt="Car 7" />
-                        <div className="card-details">
-                            <h3>Car Model 7</h3>
-                            <p>Details about car 7</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car08.jpg" alt="Car 8" />
-                        <div className="card-details">
-                            <h3>Car Model 8</h3>
-                            <p>Details about car 8</p>
-                        </div>
-                    </div>
-                    <div className="Card">
-                        <img src="car09.jpg" alt="Car 9" />
-                        <div className="card-details">
-                            <h3>Car Model 9</h3>
-                            <p>Details about car 9</p>
-                        </div>
-                    </div>
+                    {cars.length > 0 ? (
+                        cars.map((car) => (
+                            <div className="Card" key={car._id}>
+                                <img src={car.coverImg} alt={`${car.carBrand} ${car.carModel}`} />
+                                <div className="card-details">
+                                    <h1 style={{ fontSize: "35px" }}>{car.carBrand} {car.carModel}</h1>
+                                    <p>Year: {car.carYear}</p>
+                                    <p>Price: {car.carPrice} BDT</p>
+                                    <p>Condition: {car.carCondition}</p>
+                                    <p>Contact: {car.seller.telephone}</p>
+                                    {/* {car.carSellerNotes && <p>Notes: {car.carSellerNotes}</p>} */}
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <h1 style={{ textAlign: "center" }}>No cars available at the moment.</h1>
+                    )}
 
                 </section>
             </main>
