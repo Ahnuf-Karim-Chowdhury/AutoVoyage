@@ -67,7 +67,7 @@ export const sell = async (req, res) => {
         console.log(error);
         return res.status(500).send("Internal Server Error");
     }
-}
+};
 
 // Search for a car
 export const searchCar = async (req, res) => {
@@ -91,6 +91,8 @@ export const searchCar = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 export const getCars = async (req, res) => {
   try {
@@ -99,6 +101,5 @@ export const getCars = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching car data");
-
   }
 };

@@ -86,7 +86,7 @@ const HomePage = () => {
                             </div>
                         ))
                     ) : (
-                        <h1 style={{ textAlign: "center" }}>No cars available at the moment.</h1>
+                        <h1 className="h1" style={{ textAlign: "center" }}>No cars available at the moment.</h1>
                     )}
 
                 </section>
