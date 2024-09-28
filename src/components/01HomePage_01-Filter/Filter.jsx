@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Filter.css';
 
-const Filter = ({ onApplyFilters }) => {
+const Filter = ({ onApplyFilters, cars }) => {
     const [filters, setFilters] = useState({
         minPrice: 0,
         maxPrice: 1000,
@@ -21,17 +21,26 @@ const Filter = ({ onApplyFilters }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle the filter logic here using filters object
-        // Example: Sorting logic based on sortOption
-        let sortedCars = [...cars]; // Replace cars with your actual data source
+
+        // Apply filters
+        let filteredCars = cars.filter(car => {
+            const price = car.carPrice;
+            const isInPriceRange = price >= filters.minPrice && price <= filters.maxPrice;
+            const isUsedCar = filters.usedCarType ? car.carCondition === 'Used' && car.carType === filters.usedCarType : true;
+            const isNewCar = filters.newCarType ? car.carCondition === 'New' && car.carType === filters.newCarType : true;
+            
+            return isInPriceRange && (isUsedCar || isNewCar);
+        });
+
+        // Sorting logic based on sortOption
         if (filters.sortOption === 'low-to-high') {
-            sortedCars.sort((a, b) => a.price - b.price);
+            filteredCars.sort((a, b) => a.carPrice - b.carPrice);
         } else if (filters.sortOption === 'high-to-low') {
-            sortedCars.sort((a, b) => b.price - a.price);
+            filteredCars.sort((a, b) => b.carPrice - a.carPrice);
         }
 
-        // Pass sortedCars to parent component or function
-        onApplyFilters(sortedCars);
+        // Pass filtered cars to parent component or function
+        onApplyFilters(filteredCars);
     };
 
     return (
@@ -65,8 +74,6 @@ const Filter = ({ onApplyFilters }) => {
                         <option value="">Default</option>
                         <option value="low-to-high">Low to High</option>
                         <option value="high-to-low">High to Low</option>
-                        <option value="new-cars">New Cars</option>
-                        <option value="old-cars">Old Cars</option>
                     </select>
                 </div>
 
