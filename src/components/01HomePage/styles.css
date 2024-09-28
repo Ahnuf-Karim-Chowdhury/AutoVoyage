@@ -144,6 +144,7 @@ footer {
 
 .nav-links .dropdown:nth-child(1) {
     margin-left: 100px;
+    align-items: center;
 }
 
 .car-cards {
@@ -412,3 +413,36 @@ button[type="submit"]:hover {
   }
   
 
+  .nav-links {
+    display: flex;            /* Use Flexbox layout */
+    justify-content: center; /* Center items horizontally */
+    align-items: center;     /* Center items vertically if needed */
+    list-style: none;        /* Remove default list styling */
+    padding: 0;              /* Remove default padding */
+    margin: 0;               /* Remove default margin */
+  }
+  
+  .nav-links .dropdown {
+    position: relative; /* Position for dropdown */
+  }
+  
+  .dropdown-content {
+
+    position: absolute; /* Position it absolutely */
+    left: 0; /* Align it to the left of the dropdown */
+
+    min-width: 160px; /* Minimum width for dropdown */
+    z-index: 1; /* Ensure dropdown appears on top */
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown on hover */
+  }
+  
+  .dropbtn {
+    padding: 14px 20px; /* Adjust padding for buttons */
+
+  }
+  
+
+  

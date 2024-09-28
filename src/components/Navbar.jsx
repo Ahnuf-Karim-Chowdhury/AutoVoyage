@@ -60,7 +60,7 @@ const handleSearchKeyPress = (event) => {
         AutoVoyage
       </Link>
 
-      <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
+      <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`} style={{ textAlign: 'center' }}>
         <li className="dropdown">
           <a href="#" className="dropbtn">New</a>
           <div className="dropdown-content">
@@ -102,29 +102,7 @@ const handleSearchKeyPress = (event) => {
         <li><Link to="/sell-your-car" className="dropbtn" onClick={toggleMenu}>Sell Your Car</Link></li>
       </ul>
 
-      <div className="search-box">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search cars"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          onKeyPress={handleSearchKeyPress}
-        />
-        <i className="fas fa-search" onClick={handleSearch}></i>
-        <div className="suggestions-box" id="suggestions-box">
-          {searchResults.length > 0 && (
-            <ul>
-              {searchResults.map((car, index) => (
-                <li key={index}>
-                  <p>{car.carBrand} {car.carModel}</p>
-                  {/* You can display other car details here */}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
+      {/* Search bar goes here  */}
 
       <div className="auth-links">
         {isAuthenticated ? (

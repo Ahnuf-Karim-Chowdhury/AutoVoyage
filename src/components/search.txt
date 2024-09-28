@@ -1,0 +1,23 @@
+      <div className="search-box">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search cars"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          onKeyPress={handleSearchKeyPress}
+        />
+        <i className="fas fa-search" onClick={handleSearch}></i>
+        <div className="suggestions-box" id="suggestions-box">
+          {searchResults.length > 0 && (
+            <ul>
+              {searchResults.map((car, index) => (
+                <li key={index}>
+                  <p>{car.carBrand} {car.carModel}</p>
+                  {/* You can display other car details here */}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
