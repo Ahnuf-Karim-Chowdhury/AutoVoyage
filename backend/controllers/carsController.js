@@ -71,34 +71,25 @@ export const sell = async (req, res) => {
 
 // Search for cars
 export const searchCar = async (req, res) => {
-  const searchQuery = req.query.query;
-
-  console.log("Search query received:", searchQuery);
-
-  if (!searchQuery || searchQuery.trim() === "") {
-      return res.status(400).json({ message: "Search query cannot be empty." });
-  }
-
   try {
-      const cars = await Car.find({
-          $or: [
-              { carBrand: { $regex: searchQuery, $options: "i" } },
-              { carModel: { $regex: searchQuery, $options: "i" } }
-          ]
-      });
+    const query = req.query.query.toLowerCase();
+    const foundCars = await Car.find({
+      $or: [
+        { carBrand: { $regex: query, $options: "i" } }, // Case-insensitive search
+        { carModel: { $regex: query, $options: "i" } }
+      ]
+    });
 
-      console.log("Cars found:", cars.length);
-
-      if (cars.length > 0) {
-          return res.json({ found: true, cars });
-      } else {
-          return res.json({ found: false });
-      }
+    if (foundCars.length > 0) {
+      return res.json({ found: true, cars: foundCars });
+    } else {
+      return res.json({ found: false, message: "No cars found" });
+    }
   } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ error: "Error searching for cars" });
   }
 };
+
 
 
 

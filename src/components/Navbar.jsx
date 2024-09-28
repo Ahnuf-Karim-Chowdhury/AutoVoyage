@@ -34,14 +34,15 @@ const Navbar = () => {
   const handleSearch = async () => {
     if (searchInput.trim() === "") return; // Prevent search if input is empty
     try {
-        const response = await axios.get(`http://localhost:6969/cars/search?query=${searchInput}`);
-        console.log("Search results:", response.data);
-        setSearchResults(response.data.found ? response.data.cars : []); // Set search results
+      const response = await axios.get(`http://localhost:6969/cars/search?query=${searchInput}`);
+      const searchResults = response.data.found ? response.data.cars : [];
+      // Pass search results or search input to HomePage via URL
+      navigate(`/home?query=${searchInput}`, { state: { searchResults } });
     } catch (error) {
-        console.error("Error searching for cars:", error);
+      console.error("Error searching for cars:", error);
     }
-};
-
+  };
+  
 const handleSearchKeyPress = (event) => {
     if (event.key === 'Enter') {
         handleSearch();

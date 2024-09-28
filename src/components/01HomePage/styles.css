@@ -376,5 +376,39 @@ button[type="submit"]:hover {
     }
 }
 
-
+.search-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 20px auto; /* Center the search bar */
+    max-width: 400px; /* Set a maximum width for the search bar */
+  }
+  
+  #search-input {
+    width: 100%; /* Full width */
+    padding: 10px 40px; /* Padding with space for the icon */
+    border: 2px solid #007bff; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition for focus effects */
+  }
+  
+  #search-input:focus {
+    border-color: #0056b3; /* Darker border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle shadow on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  .search-box .fas.fa-search {
+    position: absolute; /* Position icon inside the input */
+    left: 10px; /* Space from the left edge */
+    color: #007bff; /* Icon color */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: color 0.3s; /* Transition for hover effect */
+  }
+  
+  .search-box .fas.fa-search:hover {
+    color: #0056b3; /* Darker color on hover */
+  }
+  
 

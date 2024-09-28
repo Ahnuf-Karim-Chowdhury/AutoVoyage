@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Import Link
 import { produce } from 'immer';
 import React, { useState } from 'react';
 import './Signupstyles.css'; // Import your CSS file
-import '../Navbar.css'
+import '../Navbar.css';
 import axios from 'axios';
 
 const url = "http://localhost:6969/auth/register";
@@ -35,10 +35,23 @@ const Signup = () => {
         console.log(formData);
         axios.post(url, formData)
         .then(res => { 
-            console.log(res)
-            navigate('/login', { replace: true });
+            console.log(res);
+            // Show success message
+            setFormData(produce(draft => {
+                draft.message = "Signup successful! Redirecting to login...";
+                draft.messageStyle = { color: "green" };
+            }));
+            // Redirect to login after 2 seconds
+            setTimeout(() => navigate('/login', { replace: true }), 2000);
         })
-        .catch(e => console.log(e));
+        .catch(e => {
+            console.log(e);
+            // Show error message
+            setFormData(produce(draft => {
+                draft.message = "Signup failed. Please try again.";
+                draft.messageStyle = { color: "red" };
+            }));
+        });
     };
 
     return (
@@ -107,4 +120,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
