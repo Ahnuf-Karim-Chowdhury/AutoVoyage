@@ -90,7 +90,8 @@ export const searchCar = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error" });}
+  };
 
 export const getCars = async (req, res) => {
   try {
