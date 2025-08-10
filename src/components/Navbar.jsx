@@ -72,7 +72,7 @@ const handleSearchKeyPress = (event) => {
         <li className="dropdown">
           <a href="#" className="dropbtn">Used</a>
           <div className="dropdown-content">
-            <Link to="/used-car-listings" className="dropbtn" onClick={toggleMenu}>Used Car Listings</Link>
+            <Link to="/used-car" className="dropbtn" onClick={toggleMenu}>Used Car Listings</Link>
             <Link to="/used-evs" className="dropbtn" onClick={toggleMenu}>Used EVs</Link>
             <Link to="/used-suvs" className="dropbtn" onClick={toggleMenu}>Used SUVs</Link>
             <Link to="/used-trucks" className="dropbtn" onClick={toggleMenu}>Used Trucks</Link>
