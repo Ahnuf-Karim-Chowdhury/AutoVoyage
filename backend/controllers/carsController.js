@@ -131,13 +131,13 @@ export const getRecentCars = async (req, res) => {
 };
 
 export const getUsedCars = async (req, res) => {
-  const limit = 3;
   try {
-    const recentCars = await Car.find().sort({ _id: -1 }).limit(limit);
-    console.log(recentCars);
-    res.status(200).json(recentCars);
+    const usedCars = await Car.find({ carCondition: "Used" });
+    console.log("Used cars fetched:", usedCars.length);
+    res.status(200).json(usedCars);
   } catch (error) {
-    res.status(500).send("Error fetching recent cars");
+    console.error("Error in getUsedCars:", error);
+    res.status(500).send("Internal Server Error");
   }
 };
 

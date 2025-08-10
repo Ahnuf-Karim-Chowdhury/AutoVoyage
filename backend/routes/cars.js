@@ -21,8 +21,14 @@ router.route("/sell").get(checkToken, (req, res) => {
 router.get("/search", searchCar);
 router.get('/get', getCars);
 router.get('/recent', getRecentCars);
-router.get('/:carId', getCarById);
 router.get('/used-car', getUsedCars);
+
+
+
+
+
+router.get('/:carId', getCarById);
+
 
 
 export default router;
