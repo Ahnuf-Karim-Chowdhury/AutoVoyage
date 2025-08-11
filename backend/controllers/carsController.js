@@ -155,3 +155,89 @@ export const getListings = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
+
+export const updateCar = async (req, res) => {
+  try {
+    const carId = req.params.carId;
+    const userId = req.user.id;
+
+    // Find the car and check if it exists
+    const car = await Car.findById(carId);
+    if (!car) {
+      return res.status(404).send("Car not found");
+    }
+
+    // Check if the current user is the seller
+    if (car.seller.uid !== userId) {
+      return res.status(403).send("Not authorized to update this listing");
+    }
+
+    // Handle file uploads
+    let updates = { ...req.body };
+    delete updates.seller;
+
+    // Handle cover image
+    if(req.files) {
+      if (req.files.coverImg) {
+        // Delete old cover image from Cloudinary if it exists
+        if (car.coverImg) {
+          const publicId = car.coverImg.split('/').pop().split('.')[0];
+          await cloudinary.uploader.destroy(`car_images/${publicId}`);
+          console.log("Deleted cover img from cloudinary");
+        }
+        
+        const coverImg = req.files.coverImg[0];
+        const coverResult = await cloudinary.uploader.upload(coverImg.path, { folder: 'car_images' });
+        updates.coverImg = coverResult.secure_url;
+        fs.unlinkSync(coverImg.path);
+      }
+
+      // Handle additional car images
+      if (req.files.carImgs) {
+        // Delete old images from Cloudinary
+        for (const imgUrl of car.carImgs) {
+          const publicId = imgUrl.split('/').pop().split('.')[0];
+          await cloudinary.uploader.destroy(`car_images/${publicId}`);
+        }
+
+        const carImgsUrls = [];
+        for (const file of req.files.carImgs) {
+          const carImgResult = await cloudinary.uploader.upload(file.path, { folder: 'car_images' });
+          carImgsUrls.push(carImgResult.secure_url);
+          fs.unlinkSync(file.path);
+        }
+        updates.carImgs = carImgsUrls;
+      }
+
+      // Handle documents
+      if (req.files.docs) {
+        // Delete old docs from Cloudinary
+        for (const docUrl of car.docs) {
+          const publicId = docUrl.split('/').pop().split('.')[0];
+          await cloudinary.uploader.destroy(`car_docs/${publicId}`);
+        }
+
+        const docsUrls = [];
+        for (const file of req.files.docs) {
+          const docResult = await cloudinary.uploader.upload(file.path, { folder: 'car_docs' });
+          docsUrls.push(docResult.secure_url);
+          fs.unlinkSync(file.path);
+        }
+        updates.docs = docsUrls;
+      }
+    }
+
+    // Update the car
+    const updatedCar = await Car.findByIdAndUpdate(
+      carId,
+      { $set: updates },
+      { new: true }
+    );
+
+    res.status(200).json(updatedCar);
+  } catch (error) {
+    console.error("Error updating car:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
