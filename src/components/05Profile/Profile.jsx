@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
+
 const Profile = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -131,7 +134,10 @@ const Profile = () => {
               >
                 Edit Profile
               </button>
-              <button className="profile-button view-listings-button">
+              <button
+                className="profile-button view-listings-button"
+                onClick={() => navigate("/listings")}
+              >
                 View Listings
               </button>
             </div>
@@ -182,7 +188,7 @@ const Profile = () => {
                   type="file"
                   name="profilePicture"
                   onChange={handleFileChange}
-                  style={{ marginRight: '10px' }}
+                  style={{ marginRight: "10px" }}
                 />
               </label>
               <br />
@@ -190,7 +196,11 @@ const Profile = () => {
               <button className="button-spacing" type="submit">
                 Save Changes
               </button>
-              <button className="cancel-button" type="button" onClick={() => setIsEditing(false)}>
+              <button
+                className="cancel-button"
+                type="button"
+                onClick={() => setIsEditing(false)}
+              >
                 Cancel
               </button>
             </form>

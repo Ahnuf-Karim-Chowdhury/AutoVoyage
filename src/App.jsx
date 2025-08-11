@@ -19,6 +19,7 @@ import CarSubmissionSuccess from './pages/SellYourCar/success';
 import Profile from "./components/05Profile/Profile.jsx";
 import CarDetails from './components/06CarDetails/CarDetails';
 import UsedCarListing from './pages/Used/UsedCarListing.jsx';
+import ViewListing from './pages/ViewListing/ViewListing.jsx';
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/car/:carId" element={<CarDetails />} />
                         <Route path="/used-car" element={<UsedCarListing />} />
+                        <Route path="/listings" element={<ViewListing />} />
                     </Routes>
                 </div>
             </AuthProvider>
