@@ -14,7 +14,7 @@ export const sell = async (req, res) => {
           const coverResult = await cloudinary.uploader.upload(coverImg.path, { folder: 'car_images' });
           coverImgUrl = coverResult.secure_url;
           fs.unlinkSync(coverImg.path);
-        };
+        }
 
         let carImgsUrls = [];
         if (req.files.carImgs) {
@@ -23,7 +23,7 @@ export const sell = async (req, res) => {
             carImgsUrls.push(carImgResult.secure_url);
             fs.unlinkSync(file.path);
           }
-        };
+        }
 
         let docsUrls = [];
         if (req.files.docs) {
@@ -142,4 +142,16 @@ export const getUsedCars = async (req, res) => {
 };
 
 
-
+export const getListings = async (req, res) => {
+  try {
+    const userId = req.user.id; 
+    const cars = await Car.find({ "seller.uid": userId });
+    if (!cars || cars.length === 0) {
+      return res.status(404).send("No listings found");
+    }
+    res.status(200).json(cars);
+  } catch (error) {
+    console.error("Error fetching car listings:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
