@@ -241,3 +241,52 @@ export const updateCar = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
+
+export const deleteCar = async (req, res) => {
+  try {
+    const carId = req.params.carId;
+    const userId = req.user.id;
+
+    // Find the car and check if it exists
+    const car = await Car.findById(carId);
+    if (!car) {
+      return res.status(404).send("Car not found");
+    }
+
+    // Check if the current user is the seller
+    if (car.seller.uid !== userId) {
+      return res.status(403).send("Not authorized to delete this listing");
+    }
+
+    // Delete cover image from Cloudinary
+    if (car.coverImg) {
+      const publicId = car.coverImg.split('/').pop().split('.')[0];
+      await cloudinary.uploader.destroy(`car_images/${publicId}`);
+    }
+
+    // Delete car images from Cloudinary
+    if (car.carImgs && car.carImgs.length > 0) {
+      for (const imgUrl of car.carImgs) {
+        const publicId = imgUrl.split('/').pop().split('.')[0];
+        await cloudinary.uploader.destroy(`car_images/${publicId}`);
+      }
+    }
+
+    // Delete documents from Cloudinary
+    if (car.docs && car.docs.length > 0) {
+      for (const docUrl of car.docs) {
+        const publicId = docUrl.split('/').pop().split('.')[0];
+        await cloudinary.uploader.destroy(`car_docs/${publicId}`);
+      }
+    }
+
+    // Delete the car from database
+    await Car.findByIdAndDelete(carId);
+
+    res.status(200).send("Car listing deleted successfully");
+  } catch (error) {
+    console.error("Error deleting car:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};

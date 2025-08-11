@@ -1,5 +1,5 @@
 import express from "express";
-import { sell, searchCar , getCars, getCarById, getRecentCars, getUsedCars, getListings, updateCar } from "../controllers/carsController.js";
+import { sell, searchCar , getCars, getCarById, getRecentCars, getUsedCars, getListings, updateCar, deleteCar } from "../controllers/carsController.js";
 import checkToken from "../middlewares/checkToken.js";
 import upload from '../middlewares/multer.js';
 
@@ -30,4 +30,5 @@ router.put('/:carId', checkToken, upload.fields([
     { name: 'carImgs', maxCount: 10 },
     { name: 'docs', maxCount: 6 }
 ]), updateCar);
+router.delete('/:carId', checkToken, deleteCar);
 export default router;
